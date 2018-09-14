@@ -1,0 +1,5 @@
+1.自绘控件,如通讯录旁边的A-Z的字母排序,主要是改写onDraw方法
+
+2.继承控件,比如圆角矩形的图片,圆形的ImageView
+
+3.组合控件,比如项目自定义的TitleView,CommonLoadingView等

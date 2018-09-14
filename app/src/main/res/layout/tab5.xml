@@ -1,0 +1,101 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:imagecontrol="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fffffdfa"
+    android:orientation="vertical">
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+        <com.fheebiy.trying.view.RoundImageView
+                android:id="@+id/roundImage_network"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@mipmap/meinv" />
+
+        <com.fheebiy.trying.view.RoundImageView
+                android:id="@+id/roundImage_one_border"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                imagecontrol:border_outside_color="#FFFF0000"
+                imagecontrol:border_thickness="2dp"
+                android:src="@mipmap/bz1" />
+
+        <com.fheebiy.trying.view.RoundImageView
+                android:id="@+id/roundImage_two_border"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                imagecontrol:border_inside_color="#fff7f2e9"
+                imagecontrol:border_outside_color="#ffd5d1c8"
+                imagecontrol:border_thickness="2dp"
+                android:src="@mipmap/bz2"/>
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+        <com.fheebiy.trying.view.RoundImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@mipmap/bz3" />
+
+        <com.fheebiy.trying.view.RoundImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                imagecontrol:border_outside_color="#FFFF0000"
+                imagecontrol:border_thickness="2dp"
+                android:src="@mipmap/bz2"/>
+
+        <com.fheebiy.trying.view.RoundImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:scaleType="centerCrop"
+                imagecontrol:border_inside_color="#fff7f2e9"
+                imagecontrol:border_outside_color="#ffd5d1c8"
+                imagecontrol:border_thickness="2dp"
+                android:src="@mipmap/bz3" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal" >
+
+        <com.fheebiy.trying.view.RoundImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@mipmap/bz3" />
+
+        <com.fheebiy.trying.view.RoundImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                imagecontrol:border_outside_color="#FFFF0000"
+                imagecontrol:border_thickness="2dp"
+                android:src="@mipmap/bz2"/>
+
+        <com.fheebiy.trying.view.RoundRectImageView
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                app:radius="5dp"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/bz3" />
+    </LinearLayout>
+
+</LinearLayout>

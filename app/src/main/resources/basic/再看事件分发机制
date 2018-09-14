@@ -1,0 +1,20 @@
+
+ view 的dispatchTouchEvent() 方法:
+
+ if (((viewFlags & CLICKABLE) == CLICKABLE ||
+                (viewFlags & LONG_CLICKABLE) == LONG_CLICKABLE)){
+
+        ....
+
+        return true;
+ }
+
+ 通过以上伪代码至少可以看到view只要是CLICKABLE == TRUE 或者 LONG_CLICKABLE == TRUE 此方法都会返回TRUE
+
+
+ public boolean performClick() { ... }
+ 这个方法并没有参与事件消费与否(即此方法的返回值并没有什么实际的作用)
+
+
+
+

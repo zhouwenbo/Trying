@@ -1,0 +1,327 @@
+博客参考:http://blog.csdn.net/dmk877/article/details/49558367
+View的绘制流程，三步: onMeasure(), onLayout(), onDraw()
+
+首先从onMeasure()说起:
+    我们可以从(View的)onMeasure()--->measure()--->(ViewRootImpl)performTraversals()(再底层的不看了)
+
+    在performTraversals()方法中我们看了老半天发现这样一句代码(desired:所需的 Traversal:遍历)
+        performMeasure(childWidthMeasureSpec, childHeightMeasureSpec)；注释 // Ask host how big it wants to be
+
+        private void performMeasure(int childWidthMeasureSpec, int childHeightMeasureSpec) {
+             Trace.traceBegin(Trace.TRACE_TAG_VIEW, "measure");
+             try {
+                 mView.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+             } finally {
+                 Trace.traceEnd(Trace.TRACE_TAG_VIEW);
+             }
+         }
+    两个参数的来源:
+            int childWidthMeasureSpec = getRootMeasureSpec(mWidth, lp.width);
+            int childHeightMeasureSpec = getRootMeasureSpec(mHeight, lp.height);
+    getRootMeasureSpec两个参数的来源，
+            mWidth = frame.width();
+            mHeight = frame.height();
+    frame的来源:
+            Rect frame = mWinFrame;
+    mWinFrame的来源:
+           mWinFrame = new Rect();(ViewRootImpl构造器中构造)，其为一个矩形，个人猜测mWinFrame是指整个窗口(或者说其上一层布局对应的矩形).
+    第二个参数lp
+         WindowManager.LayoutParams lp = mWindowAttributes;
+         final WindowManager.LayoutParams mWindowAttributes = new WindowManager.LayoutParams();
+
+    看整个方法:
+    /**
+     * Figures out the measure spec for the root view in a window based on it's
+     * layout params.
+     * 通过root view的Layout params计算出root view在window中的尺寸
+     *
+     * @param windowSize
+     *            The available width or height of the window
+     * window的大小
+     *
+     * @param rootDimension
+     *            The layout params for one dimension (width or height) of the
+     *            window.
+     * root view 在window 中的layout params
+     *
+     * @return The measure spec to use to measure the root view.
+     */
+
+        private static int getRootMeasureSpec(int windowSize, int rootDimension) {
+            int measureSpec;
+            switch (rootDimension) {
+                case ViewGroup.LayoutParams.MATCH_PARENT:
+                    // Window can't resize. Force root view to be windowSize.如果是MATCH_PARENT的话，我们不能设定view的大小，而是让view的size和window保持一致
+                    measureSpec = MeasureSpec.makeMeasureSpec(windowSize, MeasureSpec.EXACTLY);
+                    break;
+                case ViewGroup.LayoutParams.WRAP_CONTENT:
+                    // Window can resize. Set max size for root view. 我们可以改变大小，我们设定view的最大尺寸(最大尺寸就是windowSize)
+                    measureSpec = MeasureSpec.makeMeasureSpec(windowSize, MeasureSpec.AT_MOST);
+                    break;
+                default:
+                    // Window wants to be an exact size. Force root view to be that size. 默认,我们需要一个确切的size，我们给出的是view指定的尺寸(如 50dp这种)
+                    measureSpec = MeasureSpec.makeMeasureSpec(rootDimension, MeasureSpec.EXACTLY);
+                    break;
+            }
+            return measureSpec;
+        }
+
+        再看,我的理解，整个简单的相加，只是一种手段，希望两个值共同决定一个属性，但是又不想传两个参数，就做个组合参数，到时候还需要解析出size和mode，这并不是什么高深的理论
+
+         //Creates a measure specification based on the supplied size and mode.通过提供的size和mode来创建一个尺寸规格
+         public static int makeMeasureSpec(int size, int mode) {
+                 return size + mode;
+         }
+
+         至此，我们回到performMeasure(childWidthMeasureSpec, childHeightMeasureSpec)中的 mView.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+         我们终于进入View中的measure(childWidthMeasureSpec, childHeightMeasureSpec)
+         public final void measure(int widthMeasureSpec, int heightMeasureSpec){
+                ......
+              // measure ourselves, this should set the measured dimension flag back
+               onMeasure(widthMeasureSpec, heightMeasureSpec);
+                ......
+         }
+
+         方法具体就不贴了，可以看到measure(int,int)是不让我们重写的，这里面有一行关键代码
+         终于看到onMeasure()方法了，其中两个参数，原封不动的从ViewRootImpl中传进来了
+
+         protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+             setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
+                     getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
+         }
+
+         再看
+            /**
+                 * Utility(功用，功效) to return a default size. Uses the supplied size if the
+                 * MeasureSpec imposed no constraints. Will get larger if allowed
+                 * by the MeasureSpec.
+                 * 返回一个默认大小的功用。如果MeasureSpec没有强加限制的话，就使用提供的的尺寸。如果
+                 * MeasureSpec允许的话，我们将会获取一个更大的值
+                 *
+                 *
+                 *
+                 * @param size Default size for this view 默认尺寸(不受父View限制的)
+                 * @param measureSpec Constraints imposed by the parent 由父View设定的尺寸限制
+                 * @return The size this view should be. view应有的尺寸
+                 */
+                public static int getDefaultSize(int size, int measureSpec) {
+                    int result = size;
+                    int specMode = MeasureSpec.getMode(measureSpec);        //解析mode
+                    int specSize = MeasureSpec.getSize(measureSpec);        //解析size
+
+                    switch (specMode) {
+                    case MeasureSpec.UNSPECIFIED:  adj. 未指明的，未加规定的 ; 未特别指定（规定）的 ; 未详细说明的 ; 基本不用
+                        result = size;
+                        break;
+                    case MeasureSpec.AT_MOST:               //使用父View限制的size
+                    case MeasureSpec.EXACTLY:
+                        result = specSize;
+                        break;
+                    }
+                    return result;
+                }
+
+
+
+         //再看这个,设定View的宽度和高度
+         protected final void setMeasuredDimension(int measuredWidth, int measuredHeight) {
+             mMeasuredWidth = measuredWidth;
+             mMeasuredHeight = measuredHeight;
+
+             mPrivateFlags |= PFLAG_MEASURED_DIMENSION_SET;
+         }
+
+
+ 我们可以清楚的看到某个View在父View(上面用window标识)中的测量过程，绝大对数情况下，即march_parent，wrap_content时和设定
+ 具体的值的时候，其高度和宽度是在ViewRoot中已经测量好的，如果你设定的march_parent的话，那么其尺寸就由父View决定(View不能修改尺寸)，
+ mode为EXACTLY,如果设定为wrap_content的话，那么尺寸就是伸缩的，可以自由设定，但是其有一个最大值就是父容器的尺寸，mode为
+ AT_MOST。如果为具体的值，则也是设定好的，View自主值，与父View尺寸没有必然联系，不能更改,其mode为EXACTLY。
+
+
+march_parent，wrap_content,都直接受到父View的限制，确切值(如50dp)，则并无非常明显的父View限制.
+
+需要注意的是，measure(int,int)是final的不让重写，但是onMeasure(int,int)方法重写率却是非常高的,如TextView,ImageView,LinearLayout等，
+可见各个View的测量方法是不尽相同的.
+
+所以最终View的大小将受以下几个方面的影响
+ 1、父View的MeasureSpec属性；
+ 2、子View的LayoutParams属性；
+ 3、setMeasuredDimension()或者其它类似设定 mMeasuredWidth 和 mMeasuredHeight 值的方法
+
+
+
+注意ViewGroup中的以下代码,这三个方法，告诉了，你子View的绘制流程:
+       /**
+         * Ask all of the children of this view to measure themselves, taking into
+         * account both the MeasureSpec requirements for this view and its padding.
+         * We skip children that are in the GONE state The heavy lifting is done in
+         * getChildMeasureSpec.
+         *
+         * @param widthMeasureSpec The width requirements for this view
+         * @param heightMeasureSpec The height requirements for this view
+         */
+        protected void measureChildren(int widthMeasureSpec, int heightMeasureSpec) {
+            final int size = mChildrenCount;
+            final View[] children = mChildren;
+            for (int i = 0; i < size; ++i) {
+                final View child = children[i];
+                if ((child.mViewFlags & VISIBILITY_MASK) != GONE) {
+                    measureChild(child, widthMeasureSpec, heightMeasureSpec);
+                }
+            }
+        }
+
+        /**
+         * Ask one of the children of this view to measure itself, taking into
+         * account both the MeasureSpec requirements for this view and its padding.
+         * The heavy lifting is done in getChildMeasureSpec.
+         *
+         * @param child The child to measure
+         * @param parentWidthMeasureSpec The width requirements for this view
+         * @param parentHeightMeasureSpec The height requirements for this view
+         */
+        protected void measureChild(View child, int parentWidthMeasureSpec,
+                int parentHeightMeasureSpec) {
+            final LayoutParams lp = child.getLayoutParams();
+
+            final int childWidthMeasureSpec = getChildMeasureSpec(parentWidthMeasureSpec,
+                    mPaddingLeft + mPaddingRight, lp.width);
+            final int childHeightMeasureSpec = getChildMeasureSpec(parentHeightMeasureSpec,
+                    mPaddingTop + mPaddingBottom, lp.height);
+
+            child.measure(childWidthMeasureSpec, childHeightMeasureSpec);
+        }
+
+
+
+        /**
+             * Does the hard part of measureChildren: figuring out the MeasureSpec to
+             * pass to a particular child. This method figures out the right MeasureSpec
+             * for one dimension (height or width) of one child view.
+             *
+             * The goal is to combine information from our MeasureSpec with the
+             * LayoutParams of the child to get the best possible results. For example,
+             * if the this view knows its size (because its MeasureSpec has a mode of
+             * EXACTLY), and the child has indicated in its LayoutParams that it wants
+             * to be the same size as the parent, the parent should ask the child to
+             * layout given an exact size.
+             *
+             * @param spec The requirements for this view
+             * @param padding The padding of this view for the current dimension and
+             *        margins, if applicable
+             * @param childDimension How big the child wants to be in the current
+             *        dimension
+             * @return a MeasureSpec integer for the child
+             */
+            public static int getChildMeasureSpec(int spec, int padding, int childDimension) {
+                int specMode = MeasureSpec.getMode(spec);
+                int specSize = MeasureSpec.getSize(spec);
+
+                int size = Math.max(0, specSize - padding);
+
+                int resultSize = 0;
+                int resultMode = 0;
+
+                switch (specMode) {
+                // Parent has imposed an exact size on us
+                case MeasureSpec.EXACTLY:
+                    if (childDimension >= 0) {
+                        resultSize = childDimension;
+                        resultMode = MeasureSpec.EXACTLY;
+                    } else if (childDimension == LayoutParams.MATCH_PARENT) {
+                        // Child wants to be our size. So be it.
+                        resultSize = size;
+                        resultMode = MeasureSpec.EXACTLY;
+                    } else if (childDimension == LayoutParams.WRAP_CONTENT) {
+                        // Child wants to determine its own size. It can't be
+                        // bigger than us.
+                        resultSize = size;
+                        resultMode = MeasureSpec.AT_MOST;
+                    }
+                    break;
+
+                // Parent has imposed a maximum size on us
+                case MeasureSpec.AT_MOST:
+                    if (childDimension >= 0) {
+                        // Child wants a specific size... so be it
+                        resultSize = childDimension;
+                        resultMode = MeasureSpec.EXACTLY;
+                    } else if (childDimension == LayoutParams.MATCH_PARENT) {
+                        // Child wants to be our size, but our size is not fixed.
+                        // Constrain child to not be bigger than us.
+                        resultSize = size;
+                        resultMode = MeasureSpec.AT_MOST;
+                    } else if (childDimension == LayoutParams.WRAP_CONTENT) {
+                        // Child wants to determine its own size. It can't be
+                        // bigger than us.
+                        resultSize = size;
+                        resultMode = MeasureSpec.AT_MOST;
+                    }
+                    break;
+
+                // Parent asked to see how big we want to be
+                case MeasureSpec.UNSPECIFIED:
+                    if (childDimension >= 0) {
+                        // Child wants a specific size... let him have it
+                        resultSize = childDimension;
+                        resultMode = MeasureSpec.EXACTLY;
+                    } else if (childDimension == LayoutParams.MATCH_PARENT) {
+                        // Child wants to be our size... find out how big it should
+                        // be
+                        resultSize = 0;
+                        resultMode = MeasureSpec.UNSPECIFIED;
+                    } else if (childDimension == LayoutParams.WRAP_CONTENT) {
+                        // Child wants to determine its own size.... find out how
+                        // big it should be
+                        resultSize = 0;
+                        resultMode = MeasureSpec.UNSPECIFIED;
+                    }
+                    break;
+                }
+                return MeasureSpec.makeMeasureSpec(resultSize, resultMode);
+            }
+
+
+RootView的大小都是占满整个窗口的(WindowSize的，unspecified不考虑，要么就是match_parent要么就是wrap_content的)，
+match_parent对应的是specMode是EXACTLY,wrap_content对应的是AT_MOST
+
+再看ViewGroup中，measureChild，其计算child的widthMeasureSpec的方法getChildMeasureSpec()，他其中会传三个值，
+    一个是父view的widthMeasureSpec(或者heightMeasureSpec),一个是padding值,一个是child.getLayoutParams.width或者child.getLayoutParams.height
+    解析父View的specMode，根据情况设定子view的size
+
+通过分析View的代码，我们发现，其实View的尺寸计算，都是在ViewGroup中进行的，当你执行到View中其实没有太多的计算(如果你不改写onMeasure()方法的话)，但是
+像我们熟悉的TextView，ImageView,LinearLayout是都进行了改写，需要单独研究。
+
+
+
+获取view高度的问题:
+
+如果  view的layout_height = "wrap_content"  v.getLayoutParameters().height = -2
+     view的layout_height = "match_parent" v.getLayoutParameters().height = -1
+     view的layout_height = "xxdp" v.getLayoutParameters().height 会是一个明确的正数值
+
+
+
+    如果想获取view的高度,这是个不错的方法
+    /**
+     * 通过添加监听器,获取支付条的高度
+     */
+    @TargetApi(16)
+    private void getPayBtnHeight() {
+        ViewTreeObserver vto = mPayLayout.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                mPayLayout.getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                payBtnHeight = mPayLayout.getHeight();
+            }
+        });
+    }
+
+
+
+
+
+
+
+
