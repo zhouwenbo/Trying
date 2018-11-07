@@ -16,10 +16,12 @@ import com.fheebiy.trying.activity.animation.PropertyAnimationActivity;
 import com.fheebiy.trying.activity.animation.TweenAnimationActivity;
 import com.fheebiy.trying.activity.aquery.AQueryActivity;
 import com.fheebiy.trying.activity.async.AsyncActivity;
+import com.fheebiy.trying.activity.async.AyncHttpNPEActivity;
 import com.fheebiy.trying.activity.basic.*;
 import com.fheebiy.trying.activity.bitmap.BitmapCompressActivity;
 import com.fheebiy.trying.activity.broadcast.BroadcastActivity;
 import com.fheebiy.trying.activity.camera.CameraActivity;
+import com.fheebiy.trying.activity.classloader.ClassloaderActivity;
 import com.fheebiy.trying.activity.communicate.Communicate2Activity;
 import com.fheebiy.trying.activity.communicate.Communicate3Activity;
 import com.fheebiy.trying.activity.communicate.CommunicateActivity;
@@ -45,6 +47,7 @@ import com.fheebiy.trying.activity.webview.WebViewActivity;
 import com.fheebiy.trying.adapter.IndexAdapter;
 import com.fheebiy.trying.event.ViewGroupEventActivity;
 import com.fheebiy.trying.model.UIModel;
+import com.fheebiy.trying.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,6 +66,8 @@ public class IndexActivity extends FragmentActivity {
 
     private IndexAdapter adapter;
 
+    public static final String TAG = "ZWB_MAIN";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +83,8 @@ public class IndexActivity extends FragmentActivity {
 
     public List<UIModel> getUIList() {
         List<UIModel> list = new ArrayList<UIModel>();
+        list.add(new UIModel("to ClassloaderActivity", ClassloaderActivity.class));
+        list.add(new UIModel("to AyncHttpNPEActivity", AyncHttpNPEActivity.class));
         list.add(new UIModel("to ViewGroup 事件分发", ViewGroupEventActivity.class));
         list.add(new UIModel("to PhotoView Launcher activity", PhotoViewLauncherActivity.class));
         list.add(new UIModel("to camera activity", CameraActivity.class));
@@ -138,5 +145,21 @@ public class IndexActivity extends FragmentActivity {
         });
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.d(TAG, "onNewIntent");
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(TAG, "onRestart");
+    }
 }

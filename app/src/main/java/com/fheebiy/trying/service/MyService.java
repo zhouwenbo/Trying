@@ -35,8 +35,8 @@ public class MyService extends Service {
         Intent notificationIntent = new Intent(this, MainActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0,
                 notificationIntent, 0);
-        notification.setLatestEventInfo(this, "将军百战死", "壮士十年归",
-                pendingIntent);
+        /*notification.setLatestEventInfo(this, "将军百战死", "壮士十年归",
+                pendingIntent);*/
         startForeground(1, notification);
         //Thread.currentThread().getId();
         //前台service end
