@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'OPlugin'
 
 android {
     compileSdkVersion 27
@@ -21,6 +22,14 @@ android {
             exclude 'META-INF/LICENSE.txt'
         }
     }
+
+    OPluginConfig {
+        name 'zhouwenbo'
+        version 128
+        isOpen true
+    }
+
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
@@ -46,7 +55,7 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-support-fragment:1.6.1'
 
     implementation 'com.airbnb.android:lottie:2.5.5'
-    implementation ('com.jaeger.statusbarutil:library:1.5.1'){
+    implementation('com.jaeger.statusbarutil:library:1.5.1') {
         exclude group: 'com.android.support'
     }
 
