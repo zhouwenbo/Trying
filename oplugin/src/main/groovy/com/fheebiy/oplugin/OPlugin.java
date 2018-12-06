@@ -8,7 +8,8 @@ import org.gradle.api.Project;
  * Created on 2018/11/27.
  *
  * @author bob zhou.
- * Description:
+ * Description: 插件的定义
+ * 要更新插件，可以运行:oplugin module下的 upload, uploadArchives Task
  */
 public class OPlugin implements Plugin<Project> {
 

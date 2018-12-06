@@ -1,4 +1,14 @@
 apply plugin: 'com.android.application'
+/**
+ * 这个plugin怎么来的呢？
+ * 请看跟目录下的build.gradle文件。
+ * 里面有classpath 'com.fheebiy.oplugin:oplugin:1.0.0'
+ *
+ * 这个地方的'OPlugin' 在哪定义的了？
+ * 在oplugin module下面 oplugin/src/main/resources/META-INF/gradle-plugins
+ * 有个文件，名字叫做：OPlugin.properties
+ * 这个文件名字就是这个plugin的名字，就来自于此
+ * */
 apply plugin: 'OPlugin'
 
 android {
@@ -23,6 +33,13 @@ android {
         }
     }
 
+    /**
+     * 这个来自于哪了？
+     * 这代码：final OPluginExtension extension = project.getExtensions().create(Constants.NAME, OPluginExtension.class);
+     * Constants.NAME 就是这个OPluginConfig。
+     * 里面的配置参数哪来的了？
+     * 还是上面的代码，OPluginExtension.class，这个里面的参数就是
+     */
     OPluginConfig {
         name 'zhouwenbo'
         version 128
