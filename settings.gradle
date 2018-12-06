@@ -1,1 +1,1 @@
-include ':app', ':oplugin'
+include ':app', ':oplugin', ':compiler', ':interfaces'

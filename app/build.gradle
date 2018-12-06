@@ -64,6 +64,12 @@ dependencies {
 
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
+    api project(':interfaces')
+    /**
+     * 注解处理器的关键入口
+     */
+    annotationProcessor project(path: ':compiler')
+
 
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import com.androidquery.AQuery;
+import com.fheebiy.interfaces.RouterUri;
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.activity.PullToScaleImg.GestureImageActivity;
 import com.fheebiy.trying.activity.PullToScaleImg.PullToScaleImgActivity;
@@ -58,6 +59,7 @@ import java.util.List;
  * <p/>
  * 用于测试fragment
  */
+@RouterUri(scheme = "http", host = "fheebiy.com", path = "/jump_test")
 public class IndexActivity extends FragmentActivity {
 
     private AQuery aq;
