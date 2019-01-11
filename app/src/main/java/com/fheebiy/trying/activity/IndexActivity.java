@@ -26,6 +26,7 @@ import com.fheebiy.trying.activity.classloader.ClassloaderActivity;
 import com.fheebiy.trying.activity.communicate.Communicate2Activity;
 import com.fheebiy.trying.activity.communicate.Communicate3Activity;
 import com.fheebiy.trying.activity.communicate.CommunicateActivity;
+import com.fheebiy.trying.activity.cood.CoodActivity;
 import com.fheebiy.trying.activity.listview.LoadMoreListViewActivity;
 import com.fheebiy.trying.activity.listview.PullToRefreshActivity;
 import com.fheebiy.trying.activity.lite.LiteHttpActivity;
@@ -39,6 +40,7 @@ import com.fheebiy.trying.activity.photoview.PhotoViewLauncherActivity;
 import com.fheebiy.trying.activity.selfview.SelfDrawViewActivity;
 import com.fheebiy.trying.activity.service.RemoteServiceActivity;
 import com.fheebiy.trying.activity.service.ServiceMainActivity;
+import com.fheebiy.trying.activity.tablayout.TabLayoutActivity;
 import com.fheebiy.trying.activity.test.PullToRefreshTestActivity;
 import com.fheebiy.trying.activity.vp.VpActivity;
 import com.fheebiy.trying.activity.vp.VpAnimationActivity;
@@ -85,6 +87,8 @@ public class IndexActivity extends FragmentActivity {
 
     public List<UIModel> getUIList() {
         List<UIModel> list = new ArrayList<UIModel>();
+        list.add(new UIModel("tablayout", TabLayoutActivity.class));
+        list.add(new UIModel("cood", CoodActivity.class));
         list.add(new UIModel("to ClassloaderActivity", ClassloaderActivity.class));
         list.add(new UIModel("to AyncHttpNPEActivity", AyncHttpNPEActivity.class));
         list.add(new UIModel("to ViewGroup 事件分发", ViewGroupEventActivity.class));

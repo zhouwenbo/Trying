@@ -1,0 +1,10 @@
+<com.fheebiy.trying.view.RetailPullDownAnimationView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading_anim"
+    android:layout_width="26dp"
+    android:layout_height="26dp"
+    android:layout_centerInParent="true">
+
+</com.fheebiy.trying.view.RetailPullDownAnimationView>
+
+
+
