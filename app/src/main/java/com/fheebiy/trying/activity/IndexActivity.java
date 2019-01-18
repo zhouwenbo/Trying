@@ -35,7 +35,9 @@ import com.fheebiy.trying.activity.main.*;
 import com.fheebiy.trying.activity.listview.SlideToDelLvActivity;
 import com.fheebiy.trying.activity.other.ThemeStyleActivity;
 import com.fheebiy.trying.activity.overscroll.ImageScaleActivity;
+import com.fheebiy.trying.activity.overscroll.ScrollHeaderPicActivity;
 import com.fheebiy.trying.activity.overscroll.ScrollTestActivity;
+import com.fheebiy.trying.activity.overscroll.ScrollingActivity;
 import com.fheebiy.trying.activity.photoview.PhotoViewLauncherActivity;
 import com.fheebiy.trying.activity.selfview.SelfDrawViewActivity;
 import com.fheebiy.trying.activity.service.RemoteServiceActivity;
@@ -87,6 +89,7 @@ public class IndexActivity extends FragmentActivity {
 
     public List<UIModel> getUIList() {
         List<UIModel> list = new ArrayList<UIModel>();
+        list.add(new UIModel("Scrolling", ScrollHeaderPicActivity.class));
         list.add(new UIModel("tablayout", TabLayoutActivity.class));
         list.add(new UIModel("cood", CoodActivity.class));
         list.add(new UIModel("to ClassloaderActivity", ClassloaderActivity.class));

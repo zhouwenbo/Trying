@@ -72,7 +72,7 @@ dependencies {
      */
     annotationProcessor project(path: ':compiler')
 
-   /* implementation ('me.drakeet.multitype:multitype:3.5.0'){
+    /* implementation ('me.drakeet.multitype:multitype:3.5.0'){
         exclude group: 'com.android.support'
     }*/
 

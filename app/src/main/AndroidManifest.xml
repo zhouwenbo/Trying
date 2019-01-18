@@ -20,6 +20,14 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".activity.overscroll.ScrollHeaderPicActivity"
+            android:label="@string/title_activity_scroll_header_pic"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".activity.overscroll.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activity.IndexActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask">
@@ -65,9 +73,7 @@
         <activity android:name=".activity.basic.EventDispatcherActivity" />
         <activity android:name=".activity.animation.TweenAnimationActivity" />
         <activity android:name=".activity.animation.FrameAnimationActivity" />
-        <activity android:name=".activity.selfview.SelfDrawViewActivity" />
-
-        <!-- 可供另外一个应用程序打开的Activity action不用多说，data scheme表示协议 -->
+        <activity android:name=".activity.selfview.SelfDrawViewActivity" /> <!-- 可供另外一个应用程序打开的Activity action不用多说，data scheme表示协议 -->
         <activity android:name=".activity.basic.CombinationViewActivity">
             <intent-filter>
                 <action android:name="com.fheebiy.activity.CombinationViewActivity" />
@@ -138,13 +144,16 @@
         </receiver>
 
         <activity android:name=".activity.async.AyncHttpNPEActivity" />
-        <activity android:name=".activity.classloader.ClassloaderActivity"></activity>
-
-        <activity android:name=".activity.router.RouterMainActivity" android:screenOrientation="portrait"/>
-
-        <activity android:name=".activity.cood.CoodActivity"  android:screenOrientation="portrait"/>
-
-        <activity android:name=".activity.tablayout.TabLayoutActivity" android:screenOrientation="portrait"/>
+        <activity android:name=".activity.classloader.ClassloaderActivity" />
+        <activity
+            android:name=".activity.router.RouterMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.cood.CoodActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.tablayout.TabLayoutActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
