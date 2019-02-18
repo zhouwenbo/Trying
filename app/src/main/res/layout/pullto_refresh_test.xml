@@ -7,7 +7,7 @@
 
 
 
-    <com.fheebiy.test.MyRefreshableView
+    <com.fheebiy.trying.test.MyRefreshableView
             android:id="@+id/refreshable_view"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -19,6 +19,6 @@
                 android:layout_height="fill_parent"
                 android:scrollbars="none" >
         </ListView>
-    </com.fheebiy.test.MyRefreshableView>
+    </com.fheebiy.trying.test.MyRefreshableView>
 
 </LinearLayout>

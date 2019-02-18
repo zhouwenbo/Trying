@@ -10,7 +10,7 @@
             android:orientation="vertical"
             android:layout_height="match_parent">
 
-        <com.fheebiy.view.OverScrollView
+        <com.fheebiy.trying.view.OverScrollView
                 android:id="@+id/scrollview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -35,7 +35,7 @@
 
                 <include layout="@layout/ent_refresh_footer"/>
             </LinearLayout>
-        </com.fheebiy.view.OverScrollView>
+        </com.fheebiy.trying.view.OverScrollView>
 
     </LinearLayout>
 

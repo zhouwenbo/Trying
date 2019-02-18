@@ -13,12 +13,12 @@
 
     </com.fheebiy.trying.view.TitleView>
 
-    <com.fheebiy.view.CommLoadingView
+    <com.fheebiy.trying.view.CommLoadingView
             android:id="@+id/loading_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    </com.fheebiy.view.CommLoadingView>
+    </com.fheebiy.trying.view.CommLoadingView>
 
     <ImageView
             android:id="@+id/imageview"

@@ -19,6 +19,8 @@ import java.util.List;
 public class SlideToDelLvActivity extends FragmentActivity {
 
     private ComplexListView listView;
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.slidetodellv);

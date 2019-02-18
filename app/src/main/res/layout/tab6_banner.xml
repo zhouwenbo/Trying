@@ -7,12 +7,12 @@
 
 
 
-    <com.fheebiy.view.AutoScrollViewPager
+    <com.fheebiy.trying.view.AutoScrollViewPager
             android:id="@+id/asvierpager"
             android:layout_width="match_parent"
             android:layout_height="180dp">
 
-    </com.fheebiy.view.AutoScrollViewPager>
+    </com.fheebiy.trying.view.AutoScrollViewPager>
 
 
 </LinearLayout>

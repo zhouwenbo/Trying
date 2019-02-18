@@ -52,9 +52,11 @@ public class Communicate3Activity extends FragmentActivity {
     public static final String ACTION_CHANGE = "ACTION_CHANGE";
     public static final String ACTION_SWITCH = "ACTION_SWITCH";
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.communicate3);
+        mLocalBroadcastManager = LocalBroadcastManager.getInstance(this);
         strip = (PagerSlidingTabStrip) findViewById(R.id.psTabStrip);
         viewPager = (ViewPager) findViewById(R.id.comm_vp);
         init();

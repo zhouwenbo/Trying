@@ -27,6 +27,7 @@ public class Main2Activity extends FragmentActivity {
 
     private String text[] = {"搜悦", "消息", "发现", "我的"};
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main4);

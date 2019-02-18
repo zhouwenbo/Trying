@@ -35,13 +35,14 @@ public class PropertyAnimationActivity extends Activity implements View.OnClickL
         }
     };
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.property_anima);
         heartImg = (ImageView) findViewById(R.id.heart_img);
         heartImg.setOnClickListener(this);
-        String str = "abc122";
-        int x = Integer.parseInt(str);
+        //String str = "abc122";
+        //int x = Integer.parseInt(str);
 
         imageView = (ImageView) findViewById(R.id.imageview);
         loadingView = (CommLoadingView) findViewById(R.id.loading_view);

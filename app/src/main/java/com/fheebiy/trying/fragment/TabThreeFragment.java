@@ -40,7 +40,7 @@ public class TabThreeFragment extends Fragment {
         View view = inflater.inflate(R.layout.tab3, container, false);
         init(view);
         Log.d(CommonUtil.LOG_TAG, "TabThreeFragment onCreateView");
-        new AsyncTask<Void, Void, Void>() {
+       /* new AsyncTask<Void, Void, Void>() {
 
             @Override
             protected Void doInBackground(Void... params) {
@@ -56,7 +56,7 @@ public class TabThreeFragment extends Fragment {
                 getResources().getString(R.string.app_name);
             }
 
-        }.execute();
+        }.execute();*/
         return view;
     }
 

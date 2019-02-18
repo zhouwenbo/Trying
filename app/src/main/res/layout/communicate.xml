@@ -8,7 +8,7 @@
 
     <fragment
             android:id="@+id/fragment1"
-            android:name="com.fheebiy.fragment.communicate.CommFragment1"
+            android:name="com.fheebiy.trying.fragment.communicate.CommFragment1"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1">
@@ -16,7 +16,7 @@
 
     <fragment
             android:id="@+id/fragment2"
-            android:name="com.fheebiy.fragment.communicate.CommFragment2"
+            android:name="com.fheebiy.trying.fragment.communicate.CommFragment2"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="1">
@@ -24,7 +24,7 @@
 
     <fragment
             android:id="@+id/fragment3"
-            android:name="com.fheebiy.fragment.TabThreeFragment"
+            android:name="com.fheebiy.trying.fragment.TabThreeFragment"
             android:layout_width="0dp"
             android:layout_height="fill_parent"
             android:layout_weight="3">

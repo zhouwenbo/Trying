@@ -7,14 +7,14 @@
     android:layout_height="match_parent">
 
 
-    <com.fheebiy.tring.view.TitleView
+    <com.fheebiy.trying.view.TitleView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:text="下拉刷新">
 
-    </com.fheebiy.tring.view.TitleView>
+    </com.fheebiy.trying.view.TitleView>
 
-    <com.fheebiy.view.RefreshableView
+    <com.fheebiy.trying.view.RefreshableView
             android:id="@+id/refreshable_view"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
@@ -26,6 +26,6 @@
                 android:layout_height="fill_parent"
                 android:scrollbars="none" >
         </ListView>
-    </com.fheebiy.view.RefreshableView>
+    </com.fheebiy.trying.view.RefreshableView>
 
 </LinearLayout>

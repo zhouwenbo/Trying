@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.fheebiy.view.ScrollableLinearLayout
+<com.fheebiy.trying.view.ScrollableLinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -10,12 +10,12 @@
 
 
 
-    <com.fheebiy.view.AutoScrollViewPager
+    <com.fheebiy.trying.view.AutoScrollViewPager
             android:id="@+id/asvierpager"
             android:layout_width="match_parent"
             android:layout_height="180dp">
 
-    </com.fheebiy.view.AutoScrollViewPager>
+    </com.fheebiy.trying.view.AutoScrollViewPager>
 
 
 
@@ -81,4 +81,4 @@
             android:layout_height="match_parent">
 
     </android.support.v4.view.ViewPager>
-</com.fheebiy.view.ScrollableLinearLayout>
+</com.fheebiy.trying.view.ScrollableLinearLayout>

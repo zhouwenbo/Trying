@@ -22,6 +22,7 @@ public class PullToRefreshActivity extends Activity {
 
     RefreshableView refreshableView;
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pullto_refresh);

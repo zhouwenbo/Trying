@@ -8,7 +8,7 @@
 
     <include layout="@layout/circle_title_bar_index"/>
 
-    <com.fheebiy.view.SlideLinearLayout
+    <com.fheebiy.trying.view.SlideLinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent">
@@ -38,7 +38,7 @@
         </LinearLayout>
 
 
-    </com.fheebiy.view.SlideLinearLayout>
+    </com.fheebiy.trying.view.SlideLinearLayout>
 
 
 </LinearLayout>
