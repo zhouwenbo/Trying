@@ -154,6 +154,11 @@
         <activity
             android:name=".activity.tablayout.TabLayoutActivity"
             android:screenOrientation="portrait" />
+
+        <activity android:name=".activity.cood.CoodViewPagerActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.cood.VpTestActivity" android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

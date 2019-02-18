@@ -27,6 +27,8 @@ import com.fheebiy.trying.activity.communicate.Communicate2Activity;
 import com.fheebiy.trying.activity.communicate.Communicate3Activity;
 import com.fheebiy.trying.activity.communicate.CommunicateActivity;
 import com.fheebiy.trying.activity.cood.CoodActivity;
+import com.fheebiy.trying.activity.cood.CoodViewPagerActivity;
+import com.fheebiy.trying.activity.cood.VpTestActivity;
 import com.fheebiy.trying.activity.listview.LoadMoreListViewActivity;
 import com.fheebiy.trying.activity.listview.PullToRefreshActivity;
 import com.fheebiy.trying.activity.lite.LiteHttpActivity;
@@ -91,6 +93,8 @@ public class IndexActivity extends FragmentActivity {
         List<UIModel> list = new ArrayList<UIModel>();
         list.add(new UIModel("Scrolling", ScrollHeaderPicActivity.class));
         list.add(new UIModel("tablayout", TabLayoutActivity.class));
+        list.add(new UIModel("cood viewpager activity", CoodViewPagerActivity.class));
+        list.add(new UIModel("viewpager 横向滑动 activity", VpTestActivity.class));
         list.add(new UIModel("cood", CoodActivity.class));
         list.add(new UIModel("to ClassloaderActivity", ClassloaderActivity.class));
         list.add(new UIModel("to AyncHttpNPEActivity", AyncHttpNPEActivity.class));

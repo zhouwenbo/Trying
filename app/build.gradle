@@ -95,4 +95,9 @@ dependencies {
     }
 
 
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:v1.7.9'
+
+
+
+
 }

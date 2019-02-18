@@ -47,10 +47,4 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         return titles.get(position);
     }
 
-    @Override
-    public void destroyItem(ViewGroup container, int position, Object object) {
-        if(position > 3){
-            super.destroyItem(container, position, object);
-        }
-    }
 }
