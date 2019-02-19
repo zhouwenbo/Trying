@@ -6,6 +6,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.adapter.ViewPagerAdapter;
@@ -39,6 +42,8 @@ public class CoodViewPagerActivity extends AppCompatActivity {
 
     private SmartRefreshLayout mRefreshLayout;
 
+    private RecyclerView mHRecyclerView;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,6 +52,8 @@ public class CoodViewPagerActivity extends AppCompatActivity {
         mRefreshLayout = findViewById(R.id.refreshLayout);
         mRefreshLayout.setRefreshHeader(new MyRefreshHeader(this));
         mRefreshLayout.setEnableOverScrollBounce(false);
+
+        mHRecyclerView = findViewById(R.id.h_recyclerview);
         vp = findViewById(R.id.viewpager);
         mTabLayout = findViewById(R.id.tabLayout);
 
@@ -66,6 +73,19 @@ public class CoodViewPagerActivity extends AppCompatActivity {
         vp.setAdapter(adapter);
 
         mTabLayout.setupWithViewPager(vp);
+
+        updateHRecyclerView();
+
+    }
+
+    private void updateHRecyclerView() {
+        mHRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayout.HORIZONTAL, false));
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("hello : "+ i);
+        }
+        HRvAdapter adapter = new HRvAdapter(R.layout.hrv_item_view, list);
+        mHRecyclerView.setAdapter(adapter);
 
     }
 }
