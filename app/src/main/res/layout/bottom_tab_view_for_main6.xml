@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.fheebiy.trying.view.BottomTabIndicator xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/main_btn1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="tab1"
+        android:textColor="@color/orange"
+        android:gravity="center"
+        android:layout_weight="1"/>
+
+
+    <TextView
+        android:id="@+id/main_btn2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="tab2"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_weight="1"/>
+
+
+    <TextView
+        android:id="@+id/main_btn3"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="tab3"
+        android:textColor="@color/black"
+        android:gravity="center"
+        android:layout_weight="1"/>
+
+
+    <TextView
+        android:id="@+id/main_btn4"
+        android:layout_width="0dp"
+        android:text="tab4"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_height="match_parent"
+        android:layout_weight="1"/>
+
+
+</com.fheebiy.trying.view.BottomTabIndicator>

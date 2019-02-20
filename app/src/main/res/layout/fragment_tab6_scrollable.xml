@@ -1,110 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.fheebiy.trying.view.ScrollableLinearLayoutRv
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/refreshLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.fheebiy.trying.view.ScrollableLinearLayoutRv xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/main_content_banner_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clipChildren="true"
-        android:layout_height="702dp">
+        android:orientation="vertical">
 
 
-
-    <com.fheebiy.trying.view.AutoScrollViewPager
+        <com.fheebiy.trying.view.AutoScrollViewPager
             android:id="@+id/asvierpager"
             android:layout_width="match_parent"
             android:layout_height="180dp">
 
-    </com.fheebiy.trying.view.AutoScrollViewPager>
+        </com.fheebiy.trying.view.AutoScrollViewPager>
 
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/h_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:background="@color/white">
-
-    </android.support.v7.widget.RecyclerView>
-
-
-
-    <LinearLayout
-        android:id="@+id/ll_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/scroll_test_tv"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/h_recyclerview"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:background="@android:color/holo_orange_light"
-            android:gravity="center"
-            android:text="这是头部滚动部分" />
+            android:layout_height="150dp"
+            android:background="@color/white">
 
-    </LinearLayout>
+        </android.support.v7.widget.RecyclerView>
 
 
+        <LinearLayout
+            android:id="@+id/ll_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <LinearLayout
+            <TextView
+                android:id="@+id/scroll_test_tv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@android:color/holo_orange_light"
+                android:gravity="center"
+                android:text="这是头部滚动部分" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="100dp"
-            android:orientation="horizontal"
-            android:background="@color/background_tab_pressed">
+            android:layout_height="46dp"
+            android:background="@color/background_tab_pressed"
+            android:orientation="horizontal">
 
-        <TextView
+            <TextView
                 android:id="@+id/anim_title1"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:text="anim1"
-                android:textColor="#7e7e7e"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1"/>
+                android:text="anim1"
+                android:textColor="#7e7e7e" />
 
-        <TextView
+            <TextView
                 android:id="@+id/anim_title2"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:text="anim2"
-                android:textColor="#7e7e7e"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1"/>
+                android:text="anim2"
+                android:textColor="#7e7e7e" />
 
-        <TextView
+            <TextView
                 android:id="@+id/anim_title3"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
-                android:text="anim3"
-                android:textColor="#7e7e7e"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:layout_weight="1"/>
+                android:text="anim3"
+                android:textColor="#7e7e7e" />
 
-    </LinearLayout>
+        </LinearLayout>
 
 
-    <LinearLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:background="@color/background_tab_pressed"
             android:orientation="horizontal">
 
 
-        <ImageView
+            <ImageView
                 android:id="@+id/animation_strip"
                 android:layout_width="120dp"
                 android:layout_height="5dp"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/strip"/>
+                android:src="@mipmap/strip" />
 
 
-    </LinearLayout>
+        </LinearLayout>
 
 
-    <android.support.v4.view.ViewPager
+        <android.support.v4.view.ViewPager
             android:id="@+id/anim_viewpager"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-    </android.support.v4.view.ViewPager>
-</com.fheebiy.trying.view.ScrollableLinearLayoutRv>
+        </android.support.v4.view.ViewPager>
+    </com.fheebiy.trying.view.ScrollableLinearLayoutRv>
+
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

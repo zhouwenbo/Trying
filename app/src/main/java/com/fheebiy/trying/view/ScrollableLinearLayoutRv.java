@@ -423,7 +423,6 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
                     int velocity = -yVelocity;
                     int dis = mMaxScrollDistance - getScrollY();
                     if (velocity > 0 && dis > 0) {
-                        // 根据速度使listview平移
                         mDownFlingScroller.forceFinished(true);
                         mHeadScroller.forceFinished(true);
                         mUpFlingScroller.fling(0, 0, 0, velocity, 0, Integer.MAX_VALUE, 0, Integer.MAX_VALUE);
@@ -506,9 +505,6 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
 
     /**
      * 滑动监听
-     * 
-     * @author zhaoxuyang
-     * @since 2014年10月29日
      */
     public interface OnScrollYChangeListener {
 
@@ -548,4 +544,8 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
         void onScrollChanged(int scrollY);
     }
 
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        return super.onInterceptTouchEvent(ev);
+    }
 }

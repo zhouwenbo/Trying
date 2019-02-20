@@ -46,8 +46,7 @@
             android:layout_width="fill_parent"
             android:layout_height="50dp"
             android:background="#486285"
-            android:orientation="horizontal"
-            >
+            android:orientation="horizontal">
 
         <TextView
                 android:id="@+id/main_btn1"

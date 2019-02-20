@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.fragment.*;
+import com.fheebiy.trying.fragment.scrollable.HomeScrollableFragment;
 
 /**
  * Created by bob zhou on 14-8-12.
@@ -24,7 +25,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private FragmentTransaction fragmentTransaction;
     private FragmentManager fragmentManager;
 
-    private TabSixFragment twoFragment;
+    private HomeScrollableFragment twoFragment;
     private TabThreeFragment threeFragment;
     private TabFourFragment fourFragment;
     private TabFiveFragment fiveFragment;
@@ -64,7 +65,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     public void init(){
         fragmentManager = getSupportFragmentManager();
         fragmentTransaction = fragmentManager.beginTransaction();
-        twoFragment = new TabSixFragment();
+        twoFragment = new HomeScrollableFragment();
         threeFragment  = new TabThreeFragment();
         fourFragment = new TabFourFragment();
         fiveFragment = new TabFiveFragment();
@@ -72,8 +73,9 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         fragmentTransaction.add(R.id.main_frame_layout, fourFragment);
         fragmentTransaction.add(R.id.main_frame_layout, fiveFragment);
         fragmentTransaction.add(R.id.main_frame_layout, twoFragment);
-        fragmentTransaction.show(twoFragment);
+        //fragmentTransaction.show(twoFragment);
         fragmentTransaction.commit();
+        showFragment(twoFragment, threeFragment, fourFragment, fiveFragment);
     }
 
     private void showFragment(Fragment fragment,Fragment hideFrg1,Fragment hideFrg2,Fragment hideFrg3){
@@ -109,8 +111,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             default:
                 break;
         }
-
-
 
     }
 

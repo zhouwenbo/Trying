@@ -30,7 +30,9 @@ import com.fheebiy.trying.fragment.TabSevenFragment;
 import com.fheebiy.trying.fragment.TabTwoFragment;
 import com.fheebiy.trying.util.CommonUtil;
 import com.fheebiy.trying.view.AutoScrollViewPager;
+import com.fheebiy.trying.view.MyRefreshHeader;
 import com.fheebiy.trying.view.ScrollableLinearLayoutRv;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +78,10 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
     protected ScrollableLinearLayoutRv mBannerContainer;
     public static final int TITLE_HEIGHT = 49;
-    private float mDensity;
+
+
+    private SmartRefreshLayout mRefreshLayout;
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -103,6 +108,11 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         title1 = (TextView) view.findViewById(R.id.anim_title1);
         title2 = (TextView) view.findViewById(R.id.anim_title2);
         title3 = (TextView) view.findViewById(R.id.anim_title3);
+
+        mRefreshLayout = view.findViewById(R.id.refreshLayout);
+        mRefreshLayout.setRefreshHeader(new MyRefreshHeader(getContext()));
+        mRefreshLayout.setEnableOverScrollBounce(false);
+        //mRefreshLayout.setEnableRefresh(true);
 
         strip = (ImageView) view.findViewById(R.id.animation_strip);
 
@@ -229,10 +239,9 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
 
     private void initBannerLayout() {
-        mDensity = getResources().getDisplayMetrics().density;
-        mBannerContainer.setLayoutParams(new FrameLayout.LayoutParams(
+       /* mBannerContainer.setLayoutParams(new SmartRefreshLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
-                CommonUtil.getScreenHeight(getActivity()) - CommonUtil.dip2px(getActivity(), 50)));
+                CommonUtil.getScreenHeight(getActivity()) - CommonUtil.dip2px(getActivity(), 50)));*/
         mBannerContainer.setMaxScrollDistance(CommonUtil.dip2px(getContext(), 180 + 150 + 200));
     }
 
@@ -317,6 +326,7 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
                 }
             }
         }
+        Log.d(TAG, "canScrollDown = " + canScrollDown);
         return canScrollDown;
     }
 
@@ -327,8 +337,8 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
             Fragment fragment = adapter.getItem(index);
             if (fragment instanceof BaseRvFragment) {
                 BaseRvFragment commonFragment = (BaseRvFragment) fragment;
-                RecyclerView listView = commonFragment.getRecyclerView();
-                return listView;
+                RecyclerView recyclerView = commonFragment.getRecyclerView();
+                return recyclerView;
             }
         }
         return null;
@@ -341,6 +351,10 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
     @Override
     public void onScrollChanged(int scrollY) {
-
+        if (scrollY == 0) {
+            mRefreshLayout.setEnableRefresh(true);
+        } else if(scrollY > 0){
+            mRefreshLayout.setEnableRefresh(false);
+        }
     }
 }
