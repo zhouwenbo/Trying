@@ -17,6 +17,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.activity.cood.MyAdapter;
+import com.fheebiy.trying.fragment.scrollable.BaseRvFragment;
 import com.fheebiy.trying.util.CommonUtil;
 
 import java.util.List;
@@ -24,7 +25,7 @@ import java.util.List;
 /**
  * Created by bob zhou on 14-7-30.
  */
-public class TabTwoFragment extends Fragment {
+public class TabTwoFragment extends BaseRvFragment {
 
     static final String TAG = "TabTwoFragment";
 
@@ -50,11 +51,11 @@ public class TabTwoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-
-
     }
 
 
-
+    @Override
+    public RecyclerView getRecyclerView() {
+        return mRecyclerView;
+    }
 }

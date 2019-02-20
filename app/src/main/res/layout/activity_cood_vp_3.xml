@@ -21,14 +21,13 @@
                 android:id="@+id/base_list_collapsing_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll">
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <!--add view to Collapsing-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_scrollFlags="scroll">
+                    android:orientation="vertical">
 
 
                     <android.support.v7.widget.RecyclerView

@@ -159,6 +159,8 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".activity.cood.VpTestActivity" android:screenOrientation="portrait"/>
+
+        <activity android:name=".activity.cood.ScrollFragmentTestActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

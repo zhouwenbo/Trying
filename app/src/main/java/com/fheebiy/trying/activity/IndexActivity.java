@@ -28,6 +28,7 @@ import com.fheebiy.trying.activity.communicate.Communicate3Activity;
 import com.fheebiy.trying.activity.communicate.CommunicateActivity;
 import com.fheebiy.trying.activity.cood.CoodActivity;
 import com.fheebiy.trying.activity.cood.CoodViewPagerActivity;
+import com.fheebiy.trying.activity.cood.ScrollFragmentTestActivity;
 import com.fheebiy.trying.activity.cood.VpTestActivity;
 import com.fheebiy.trying.activity.listview.LoadMoreListViewActivity;
 import com.fheebiy.trying.activity.listview.PullToRefreshActivity;
@@ -91,6 +92,7 @@ public class IndexActivity extends FragmentActivity {
 
     public List<UIModel> getUIList() {
         List<UIModel> list = new ArrayList<UIModel>();
+        list.add(new UIModel("Scrolling header activity", ScrollFragmentTestActivity.class));
         list.add(new UIModel("Scrolling", ScrollHeaderPicActivity.class));
         list.add(new UIModel("tablayout", TabLayoutActivity.class));
         list.add(new UIModel("cood viewpager activity", CoodViewPagerActivity.class));

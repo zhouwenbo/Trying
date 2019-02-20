@@ -1,22 +1,36 @@
-package com.fheebiy.trying.fragment;
+package com.fheebiy.trying.fragment.scrollable;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
-import android.widget.*;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.TextView;
+
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.fheebiy.trying.R;
+import com.fheebiy.trying.activity.cood.HRvAdapter;
 import com.fheebiy.trying.adapter.ComplexVpAdapter;
 import com.fheebiy.trying.adapter.ImagePagerAdapter;
+import com.fheebiy.trying.fragment.BaseFragment;
+import com.fheebiy.trying.fragment.TabEightFragment;
+import com.fheebiy.trying.fragment.TabNineFragment;
+import com.fheebiy.trying.fragment.TabSevenFragment;
+import com.fheebiy.trying.fragment.TabTwoFragment;
 import com.fheebiy.trying.util.CommonUtil;
 import com.fheebiy.trying.view.AutoScrollViewPager;
-import com.fheebiy.trying.view.ScrollableLinearLayout;
+import com.fheebiy.trying.view.ScrollableLinearLayoutRv;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +38,10 @@ import java.util.List;
 /**
  * Created by zhouwenbo on 15/5/25.
  */
-public class TabSix2Fragment extends Fragment implements View.OnClickListener, ScrollableLinearLayout.OnScrollYChangeListener {
+public class HomeScrollableFragment extends Fragment implements View.OnClickListener, ScrollableLinearLayoutRv.OnScrollYChangeListener {
 
+
+    public static final String TAG = "HomeScrollableFragment";
 
     private AutoScrollViewPager autoScrollViewPager;
 
@@ -56,7 +72,9 @@ public class TabSix2Fragment extends Fragment implements View.OnClickListener, S
 
     private int currIndex;
 
-    protected ScrollableLinearLayout mBannerContainer;
+    private RecyclerView mHRecyclerView;
+
+    protected ScrollableLinearLayoutRv mBannerContainer;
     public static final int TITLE_HEIGHT = 49;
     private float mDensity;
 
@@ -75,9 +93,8 @@ public class TabSix2Fragment extends Fragment implements View.OnClickListener, S
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.tab6_2, container, false);
+        return inflater.inflate(R.layout.fragment_tab6_scrollable, container, false);
     }
-
 
 
     private void findViews(View view) {
@@ -89,13 +106,25 @@ public class TabSix2Fragment extends Fragment implements View.OnClickListener, S
 
         strip = (ImageView) view.findViewById(R.id.animation_strip);
 
+        view.findViewById(R.id.ll_header).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        view.findViewById(R.id.scroll_test_tv).setOnClickListener(this);
+
         titles.add(title1);
         titles.add(title2);
         titles.add(title3);
 
+        mHRecyclerView = view.findViewById(R.id.h_recyclerview);
         //mTotalLayout = (FaceLinearLayout) view.findViewById(R.id.main_container);
-        mBannerContainer = (ScrollableLinearLayout) view.findViewById(R.id.main_content_banner_container);
+        mBannerContainer = (ScrollableLinearLayoutRv) view.findViewById(R.id.main_content_banner_container);
         mBannerContainer.setOnScrollListener(this);
+
+        updateHRecyclerView();
 
     }
 
@@ -185,13 +214,13 @@ public class TabSix2Fragment extends Fragment implements View.OnClickListener, S
     }
 
     private void initUI() {
-        sevenFragment = new TabSevenFragment();
-        eightFragment = new TabEightFragment();
-        nineFragment = new TabNineFragment();
+        //sevenFragment = new TabSevenFragment();
+        //eightFragment = new TabEightFragment();
+        //nineFragment = new TabNineFragment();
         list = new ArrayList<Fragment>();
-        list.add(sevenFragment);
-        list.add(eightFragment);
-        list.add(nineFragment);
+        list.add(new TabTwoFragment());
+        list.add(new TabTwoFragment());
+        list.add(new TabTwoFragment());
 
         adapter = new ComplexVpAdapter(getActivity().getSupportFragmentManager(), list, getActivity());
 
@@ -199,14 +228,31 @@ public class TabSix2Fragment extends Fragment implements View.OnClickListener, S
     }
 
 
-    private void initBannerLayout(){
+    private void initBannerLayout() {
         mDensity = getResources().getDisplayMetrics().density;
         mBannerContainer.setLayoutParams(new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.MATCH_PARENT,
-                CommonUtil.getScreenHeight(getActivity())-CommonUtil.dip2px(getActivity(), 50)));
-        mBannerContainer.setMaxScrollDistance(CommonUtil.dip2px(getContext(), 180));
+                CommonUtil.getScreenHeight(getActivity()) - CommonUtil.dip2px(getActivity(), 50)));
+        mBannerContainer.setMaxScrollDistance(CommonUtil.dip2px(getContext(), 180 + 150 + 200));
     }
 
+
+    private void updateHRecyclerView() {
+        mHRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.HORIZONTAL, false));
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("hello : " + i);
+        }
+        HRvAdapter adapter = new HRvAdapter(R.layout.hrv_item_view, list);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Log.d(TAG, "position = " + position);
+            }
+        });
+        mHRecyclerView.setAdapter(adapter);
+
+    }
 
     @Override
     public void onPause() {
@@ -235,13 +281,23 @@ public class TabSix2Fragment extends Fragment implements View.OnClickListener, S
                 viewPager.setCurrentItem(2);
                 break;
 
-
+            case R.id.scroll_test_tv:
+                Log.d(TAG, "scroll_test_tv clicked");
+                break;
+            default:
+                break;
         }
     }
 
     @Override
-    public boolean canScrollUp() {
-        return mBannerContainer.getScrollY() < mBannerContainer.getMaxScrollDistance();
+    public boolean canScrollUp(int from) {
+        int y = mBannerContainer.getScrollY();
+        int max = mBannerContainer.getMaxScrollDistance();
+        boolean b = y < max;
+
+        Log.d(TAG, "y = " + y + " ,max = " + max + " ,b = " + b + " ,from = " + from);
+
+        return b;
     }
 
     @Override
@@ -252,11 +308,11 @@ public class TabSix2Fragment extends Fragment implements View.OnClickListener, S
         int index = viewPager.getCurrentItem();
         if (index >= 0) {
             Fragment fragment = adapter.getItem(index);
-            if (fragment instanceof BaseFragment) {
-                BaseFragment commonFragment = (BaseFragment) fragment;
-                ListView listView = commonFragment.getListView();
-                if (listView != null && listView.getFirstVisiblePosition() == 0 && listView.getChildAt(0) != null
-                        && listView.getChildAt(0).getTop() == listView.getPaddingTop()) {
+            if (fragment instanceof BaseRvFragment) {
+                BaseRvFragment commonFragment = (BaseRvFragment) fragment;
+                RecyclerView recyclerView = commonFragment.getRecyclerView();
+                if (recyclerView != null && recyclerView.getChildAt(0) != null
+                        && recyclerView.getChildAt(0).getTop() == recyclerView.getPaddingTop()) {
                     canScrollDown = true;
                 }
             }
@@ -265,13 +321,13 @@ public class TabSix2Fragment extends Fragment implements View.OnClickListener, S
     }
 
     @Override
-    public ListView getListView() {
+    public RecyclerView getRecyclerView() {
         int index = viewPager.getCurrentItem();
         if (index >= 0) {
             Fragment fragment = adapter.getItem(index);
-            if (fragment instanceof BaseFragment) {
-                BaseFragment commonFragment = (BaseFragment) fragment;
-                ListView listView = commonFragment.getListView();
+            if (fragment instanceof BaseRvFragment) {
+                BaseRvFragment commonFragment = (BaseRvFragment) fragment;
+                RecyclerView listView = commonFragment.getRecyclerView();
                 return listView;
             }
         }

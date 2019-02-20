@@ -11,6 +11,7 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.fragment.*;
+import com.fheebiy.trying.fragment.scrollable.HomeScrollableFragment;
 import com.fheebiy.trying.view.FragmentTabHost;
 import com.fheebiy.trying.view.MyFragmentTabHost;
 import com.fheebiy.trying.view.MyTabIndicator;
@@ -31,7 +32,7 @@ public class Main4Activity extends FragmentActivity {
 
     private String mTextviewArray[] = {"搜悦", "消息", "发现", "我的"};
 
-    private Class fragmentArray[] ={TabSix2Fragment.class, TabFourFragment.class, TabThreeFragment.class,TabTwoFragment.class};
+    private Class fragmentArray[] ={TabSix2Fragment.class, HomeScrollableFragment.class, TabThreeFragment.class,TabTwoFragment.class};
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

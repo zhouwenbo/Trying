@@ -34,12 +34,12 @@ public class ComplexVpAdapter extends FragmentPagerAdapter {
         return list.size();
     }
 
-    @Override
+   /* @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         if(position >4){
             super.destroyItem(container, position, object);
         }
-    }
+    }*/
 
 
 }
