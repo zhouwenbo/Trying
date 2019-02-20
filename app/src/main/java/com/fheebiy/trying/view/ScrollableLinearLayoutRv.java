@@ -9,10 +9,14 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
+import android.view.View;
 import android.view.ViewConfiguration;
+import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
+
+import com.fheebiy.trying.R;
 
 /**
  * 首页内容外层的linearlayout，主要处理banner和listview的联动
@@ -148,6 +152,11 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
      */
     private int mMaximumVelocity;
 
+
+    public static final String SHRINK_TAG = "shrink";
+
+    private View mShrinkView;
+
     /**
      * 构造方法
      *
@@ -181,6 +190,7 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
     @SuppressLint("NewApi")
     private void init(Context context) {
         final ViewConfiguration configuration = ViewConfiguration.get(context);
+
         mTouchSlop = configuration.getScaledTouchSlop();
         mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
         mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
@@ -194,6 +204,32 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             this.setMotionEventSplittingEnabled(false);
         }
+
+       /* mShrinkView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                mShrinkView.getViewTreeObserver().removeOnPreDrawListener(this);
+                return false;
+            }
+        });*/
+
+
+    }
+
+
+    @Override
+    protected void onFinishInflate() {
+        super.onFinishInflate();
+        mShrinkView = findViewById(R.id.ll_shrink);
+        mShrinkView.post(new Runnable() {
+            @Override
+            public void run() {
+                int height = mShrinkView.getHeight();
+                Log.d(TAG, "height = " + height + " ,mMaxScrollDistance = " + mMaxScrollDistance);
+                mMaxScrollDistance = height;
+                requestLayout();
+            }
+        });
     }
 
     @Override
@@ -205,10 +241,15 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
 
     /**
      * 获取最大滚动距离
-     * 
+     *
      * @return int
      */
     public int getMaxScrollDistance() {
+
+        if (mShrinkView.getHeight() != mMaxScrollDistance){
+            mMaxScrollDistance = mShrinkView.getHeight();
+            requestLayout();
+        }
         return mMaxScrollDistance;
     }
 
@@ -219,7 +260,7 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
      *            maxScrollDistance
      */
     public void setMaxScrollDistance(int maxScrollDistance) {
-        this.mMaxScrollDistance = maxScrollDistance;
+        //this.mMaxScrollDistance = maxScrollDistance;
     }
 
     /**
@@ -523,9 +564,9 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
         boolean canScrollDown();
 
         /**
-         * 获取listview
+         * 获取RecyclerView
          * 
-         * @return listview
+         * @return RecyclerView
          */
         RecyclerView getRecyclerView();
         

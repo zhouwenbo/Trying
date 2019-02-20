@@ -21,24 +21,30 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     private List<String> list = new ArrayList<>();
+    private List<Integer> heights = new ArrayList<>();
     private Context mContext;
 
-    public MyAdapter( Context c) {
+    public MyAdapter(Context c) {
         for (int i = 0; i < 20; i++) {
             list.add("index = " + i);
+            heights.add((int) (200 + Math.random() * 400));
         }
         this.mContext = c;
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View itmeView = LayoutInflater.from(mContext).inflate(R.layout.index_item, viewGroup, false);
+        View itmeView = LayoutInflater.from(mContext).inflate(R.layout.home_rv_item, viewGroup, false);
         return new ViewHolder(itmeView);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         viewHolder.mTextView.setText(list.get(i));
+        ViewGroup.LayoutParams params = viewHolder.itemView.getLayoutParams();
+        params.height = heights.get(i);
+        viewHolder.itemView.setLayoutParams(params);
+
     }
 
     @Override
@@ -52,7 +58,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mTextView = itemView.findViewById(R.id.index_item_name);
+            mTextView = itemView.findViewById(R.id.card_tv);
         }
     }
 }

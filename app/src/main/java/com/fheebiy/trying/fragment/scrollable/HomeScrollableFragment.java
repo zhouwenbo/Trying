@@ -1,6 +1,8 @@
 package com.fheebiy.trying.fragment.scrollable;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,6 +35,8 @@ import com.fheebiy.trying.view.AutoScrollViewPager;
 import com.fheebiy.trying.view.MyRefreshHeader;
 import com.fheebiy.trying.view.ScrollableLinearLayoutRv;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +80,8 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
     private RecyclerView mHRecyclerView;
 
+    private View mTextView;
+
     protected ScrollableLinearLayoutRv mBannerContainer;
     public static final int TITLE_HEIGHT = 49;
 
@@ -109,9 +115,29 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         title2 = (TextView) view.findViewById(R.id.anim_title2);
         title3 = (TextView) view.findViewById(R.id.anim_title3);
 
+        mTextView = view.findViewById(R.id.scroll_test_tv);
+
         mRefreshLayout = view.findViewById(R.id.refreshLayout);
         mRefreshLayout.setRefreshHeader(new MyRefreshHeader(getContext()));
         mRefreshLayout.setEnableOverScrollBounce(false);
+        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (mTextView.getVisibility() == View.VISIBLE) {
+                            mTextView.setVisibility(View.GONE);
+                        } else {
+                            mTextView.setVisibility(View.VISIBLE);
+                        }
+                        mRefreshLayout.finishRefresh();
+                    }
+                },2000);
+
+            }
+        });
         //mRefreshLayout.setEnableRefresh(true);
 
         strip = (ImageView) view.findViewById(R.id.animation_strip);
