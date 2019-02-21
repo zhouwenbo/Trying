@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.activity.cood.HRvAdapter;
+import com.fheebiy.trying.activity.main.MainActivity;
 import com.fheebiy.trying.adapter.ComplexVpAdapter;
 import com.fheebiy.trying.adapter.ImagePagerAdapter;
 import com.fheebiy.trying.fragment.BaseFragment;
@@ -120,7 +121,7 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         mTextView = view.findViewById(R.id.scroll_test_tv);
 
         mRefreshLayout = view.findViewById(R.id.refreshLayout);
-        mRefreshLayout.setRefreshHeader(new MyRefreshHeader(getContext()));
+        //mRefreshLayout.setRefreshHeader(new MyRefreshHeader(getContext()));
         mRefreshLayout.setEnableOverScrollBounce(false);
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -165,6 +166,9 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
         updateHRecyclerView();
         updateHRecyclerView2();
+
+        MainActivity mainActivity = (MainActivity) getActivity();
+        mainActivity.setStatusBar(view.findViewById(R.id.search_view));
 
     }
 

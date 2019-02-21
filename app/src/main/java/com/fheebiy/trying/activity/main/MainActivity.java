@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.fragment.*;
 import com.fheebiy.trying.fragment.scrollable.HomeScrollableFragment;
+import com.jaeger.library.StatusBarUtil;
 
 /**
  * Created by bob zhou on 14-8-12.
@@ -37,12 +38,14 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private TextView btn4;
 
 
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         findViews();
         bindListener();
         init();
+        //setStatusBar();
     }
 
 
@@ -119,6 +122,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         btn2.setTextColor(getResources().getColor(R.color.white));
         btn3.setTextColor(getResources().getColor(R.color.white));
         btn4.setTextColor(getResources().getColor(R.color.white));
+    }
 
+
+    public void setStatusBar(View view) {
+        //StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary));
+
+        StatusBarUtil.setTransparentForImageViewInFragment(this, view);
     }
 }

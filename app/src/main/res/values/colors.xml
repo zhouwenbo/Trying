@@ -13,4 +13,7 @@
     <color name="tab_text_unselected">#b4b4b4</color>
     <color name="pstrip_text_selected_color">#3774A3</color>
     <color name="colorTransport">#00000000</color>
+
+    <color name="colorPrimary">#146e6e</color>
+
 </resources>

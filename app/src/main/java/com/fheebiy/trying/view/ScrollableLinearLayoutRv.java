@@ -18,6 +18,7 @@ import android.widget.Scroller;
 
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.util.CommonUtil;
+import com.jaeger.library.StatusBarUtil;
 
 /**
  * 首页内容外层的linearlayout，主要处理banner和listview的联动
@@ -216,7 +217,7 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
             }
         });*/
 
-       searchBarHeight = CommonUtil.dip2px(getContext(), 18);
+       searchBarHeight = CommonUtil.dip2px(getContext(), 46) + CommonUtil.getStatusBarHeight(getContext());
 
 
     }
