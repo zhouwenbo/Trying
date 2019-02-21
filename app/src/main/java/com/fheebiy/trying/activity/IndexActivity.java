@@ -92,6 +92,7 @@ public class IndexActivity extends FragmentActivity {
 
     public List<UIModel> getUIList() {
         List<UIModel> list = new ArrayList<UIModel>();
+        list.add(new UIModel("to main1", MainActivity.class));
         list.add(new UIModel("Scrolling header activity", ScrollFragmentTestActivity.class));
         list.add(new UIModel("Scrolling", ScrollHeaderPicActivity.class));
         list.add(new UIModel("tablayout", TabLayoutActivity.class));
@@ -138,7 +139,6 @@ public class IndexActivity extends FragmentActivity {
         list.add(new UIModel("to main4", Main4Activity.class));
         list.add(new UIModel("to main3", Main3Activity.class));
         list.add(new UIModel("to main2", Main2Activity.class));
-        list.add(new UIModel("to main1", MainActivity.class));
         list.add(new UIModel("to vp strip", VpStripActivity.class));
         list.add(new UIModel("to animation vp", VpAnimationActivity.class));
         list.add(new UIModel("to complex vp", VpComplexActivity.class));
