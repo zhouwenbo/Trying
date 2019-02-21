@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 import com.fheebiy.trying.R;
+import com.fheebiy.trying.util.CommonUtil;
 
 /**
  * 首页内容外层的linearlayout，主要处理banner和listview的联动
@@ -157,6 +158,8 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
 
     private View mShrinkView;
 
+    private int searchBarHeight;
+
     /**
      * 构造方法
      *
@@ -213,6 +216,8 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
             }
         });*/
 
+       searchBarHeight = CommonUtil.dip2px(getContext(), 18);
+
 
     }
 
@@ -226,7 +231,7 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
             public void run() {
                 int height = mShrinkView.getHeight();
                 Log.d(TAG, "height = " + height + " ,mMaxScrollDistance = " + mMaxScrollDistance);
-                mMaxScrollDistance = height;
+                mMaxScrollDistance = height - searchBarHeight;
                 requestLayout();
             }
         });
@@ -246,8 +251,8 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
      */
     public int getMaxScrollDistance() {
 
-        if (mShrinkView.getHeight() != mMaxScrollDistance){
-            mMaxScrollDistance = mShrinkView.getHeight();
+        if (mShrinkView.getHeight() != mMaxScrollDistance - searchBarHeight) {
+            mMaxScrollDistance = mShrinkView.getHeight() - searchBarHeight;
             requestLayout();
         }
         return mMaxScrollDistance;

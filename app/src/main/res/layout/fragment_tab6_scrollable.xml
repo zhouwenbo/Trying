@@ -1,31 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/space_46"
-        android:background="@color/search_bg"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="这是搜索区域" />
-
-
-    </LinearLayout>
-
-
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-
-        android:id="@+id/refreshLayout"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -78,7 +60,6 @@
                         android:text="这是头部滚动部分" />
 
                 </LinearLayout>
-
 
 
                 <android.support.v7.widget.RecyclerView
@@ -157,6 +138,22 @@
         </com.fheebiy.trying.view.ScrollableLinearLayoutRv>
 
 
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="18dp"
+            android:background="@color/search_bg"
+            android:gravity="center">
 
-</LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="这是搜索区域" />
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>
