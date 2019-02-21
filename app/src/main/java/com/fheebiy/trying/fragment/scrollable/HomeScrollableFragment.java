@@ -80,6 +80,8 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
     private RecyclerView mHRecyclerView;
 
+    private RecyclerView mHRecyclerView2;
+
     private View mTextView;
 
     protected ScrollableLinearLayoutRv mBannerContainer;
@@ -156,11 +158,13 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         titles.add(title3);
 
         mHRecyclerView = view.findViewById(R.id.h_recyclerview);
+        mHRecyclerView2 = view.findViewById(R.id.h_recyclerview2);
         //mTotalLayout = (FaceLinearLayout) view.findViewById(R.id.main_container);
         mBannerContainer = (ScrollableLinearLayoutRv) view.findViewById(R.id.main_content_banner_container);
         mBannerContainer.setOnScrollListener(this);
 
         updateHRecyclerView();
+        updateHRecyclerView2();
 
     }
 
@@ -288,6 +292,25 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         mHRecyclerView.setAdapter(adapter);
 
     }
+
+
+    private void updateHRecyclerView2() {
+        mHRecyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.HORIZONTAL, false));
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("hello : " + i);
+        }
+        HRvAdapter adapter = new HRvAdapter(R.layout.hrv_item_view, list);
+        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Log.d(TAG, "position = " + position);
+            }
+        });
+        mHRecyclerView2.setAdapter(adapter);
+
+    }
+
 
     @Override
     public void onPause() {

@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="搜索区域" />
+            android:text="这是搜索区域" />
 
 
     </LinearLayout>
@@ -42,6 +42,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
+
+                <!--这个id = ll_shrink 的ViewGroup  里面添加头部的一些内容区，如banner,公告，品宣，金刚等-->
 
 
                 <com.fheebiy.trying.view.AutoScrollViewPager
@@ -75,6 +78,17 @@
                         android:text="这是头部滚动部分" />
 
                 </LinearLayout>
+
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/h_recyclerview2"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:background="@color/white">
+
+                </android.support.v7.widget.RecyclerView>
+
 
             </LinearLayout>
 
