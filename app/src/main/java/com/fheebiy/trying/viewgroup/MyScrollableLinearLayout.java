@@ -4,9 +4,11 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.fheebiy.trying.util.CommonUtil;
+import com.fheebiy.trying.util.Log;
 
 /**
  * Created on 2019/2/22.
@@ -18,6 +20,23 @@ public class MyScrollableLinearLayout extends LinearLayout {
 
 
     private int testHeight = 0;
+
+    /**
+     * 手机按下时的屏幕坐标
+     */
+    private float mYDown;
+
+    /**
+     * 手机当前所处的屏幕坐标
+     */
+    private float mYMove;
+
+    /**
+     * 上次触发ACTION_MOVE事件时的屏幕坐标
+     */
+    private float mYLastMove;
+
+    public static final String TAG = "MyScrollableLinearLayout";
 
     public MyScrollableLinearLayout(Context context) {
         super(context);
@@ -36,6 +55,12 @@ public class MyScrollableLinearLayout extends LinearLayout {
     protected void onFinishInflate() {
         super.onFinishInflate();
         testHeight = CommonUtil.dip2px(getContext(), 300);
+        setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -54,11 +79,33 @@ public class MyScrollableLinearLayout extends LinearLayout {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        Log.d(TAG, "onTouchEvent");
+        return super.onTouchEvent(event);
+    }
+
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        Log.d(TAG, "");
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
 
+                mYDown = event.getY();
+                mYLastMove = mYDown;
+
                 break;
             case MotionEvent.ACTION_MOVE:
+                mYMove = event.getY();
+                int scrolledY = (int) (mYLastMove - mYMove);
+                if (getScrollY() + scrolledY + getHeight() > 0) {
+                    scrollBy(0, 0);
+                    return true;
+                }
+
+
+                Log.d(TAG, "scrolledY = " + scrolledY);
+                scrollBy(0, scrolledY);
+                mYLastMove = mYMove;
                 break;
 
 
@@ -73,7 +120,6 @@ public class MyScrollableLinearLayout extends LinearLayout {
 
         }
 
-
-        return super.onTouchEvent(event);
+        return super.dispatchTouchEvent(event);
     }
 }
