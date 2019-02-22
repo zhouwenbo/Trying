@@ -11,6 +11,15 @@ import android.widget.Scroller;
 
 /**
  * Created by guolin on 16/1/12.
+ * 展示了一个ViewGroup的基本能力，十分受益，以后所有的ViewGroup都可以都可以参照此来写
+ *
+ * onMeasure
+ * onLayout
+ * event 处理
+ *
+ * 堪称经典入门
+ *
+ *
  */
 public class ScrollerLayout extends ViewGroup {
 
@@ -100,6 +109,8 @@ public class ScrollerLayout extends ViewGroup {
                     return true;
                 }
                 break;
+            default:
+                break;
         }
         return super.onInterceptTouchEvent(ev);
     }
@@ -127,6 +138,9 @@ public class ScrollerLayout extends ViewGroup {
                 // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
                 mScroller.startScroll(getScrollX(), 0, dx, 0);
                 invalidate();
+                break;
+
+            default:
                 break;
         }
         return super.onTouchEvent(event);
