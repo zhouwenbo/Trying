@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.fheebiy.trying.viewgroup.guolinscroller.ScrollerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:text="This is first child view"/>
+        android:text="This is first child view"
+        android:gravity="center"
+        android:onClick="onClick"
+        android:background="@color/colorPrimary"/>
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@color/strip_color"
+        android:gravity="center"
+        android:onClick="onClick"
         android:text="This is second child view"/>
 
-    <Button
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:background="@color/indicator"
+        android:gravity="center"
+        android:onClick="onClick"
         android:text="This is third child view"/>
 
 </com.fheebiy.trying.viewgroup.guolinscroller.ScrollerLayout>

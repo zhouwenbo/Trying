@@ -3,6 +3,7 @@ package com.fheebiy.trying.viewgroup.guolinscroller;
 import android.content.Context;
 import android.support.v4.view.ViewConfigurationCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -58,6 +59,8 @@ public class ScrollerLayout extends ViewGroup {
      */
     private int rightBorder;
 
+    public static final String TAG = "ScrollerLayout";
+
     public ScrollerLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
         // 第一步，创建Scroller的实例
@@ -88,7 +91,7 @@ public class ScrollerLayout extends ViewGroup {
                 // bottom 的值，不是零，因为这个Bottom 是相对于parent的左上角。零点位置的。所以一定是view的高度
                 childView.layout(i * childView.getMeasuredWidth(), 0, (i + 1) * childView.getMeasuredWidth(), childView.getMeasuredHeight());
             }
-            // 初始化左右边界值
+            // 初始化左右边界值,这是定值，不会变的
             leftBorder = getChildAt(0).getLeft();
             rightBorder = getChildAt(getChildCount() - 1).getRight();
         }
@@ -120,15 +123,23 @@ public class ScrollerLayout extends ViewGroup {
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
             case MotionEvent.ACTION_MOVE:
+                //左右，怎么做减法，需要仔细点，弄反了，结果就反了。需要仔细再仔细
+                //右边为正方向，即右边的点的x 大于 左边的点的x
                 mXMove = event.getRawX();
                 int scrolledX = (int) (mXLastMove - mXMove);
+                Log.d(TAG, "mXLastMove = "+ mXLastMove + " ,mXMove = " + mXMove + " ,scrolledX = " + scrolledX);
                 if (getScrollX() + scrolledX < leftBorder) {
                     scrollTo(leftBorder, 0);
+                    Log.d(TAG, "左滑到底啦......");
                     return true;
                 } else if (getScrollX() + getWidth() + scrolledX > rightBorder) {
                     scrollTo(rightBorder - getWidth(), 0);
+                    Log.d(TAG, "right右滑到底啦......");
                     return true;
                 }
+
+                //向右边滚动，scrolledX > 0
+                //向左边滚动， scrolledX < 0
                 scrollBy(scrolledX, 0);
                 mXLastMove = mXMove;
                 break;
