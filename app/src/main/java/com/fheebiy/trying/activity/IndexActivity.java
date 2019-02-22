@@ -3,7 +3,6 @@ package com.fheebiy.trying.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -40,9 +39,9 @@ import com.fheebiy.trying.activity.other.ThemeStyleActivity;
 import com.fheebiy.trying.activity.overscroll.ImageScaleActivity;
 import com.fheebiy.trying.activity.overscroll.ScrollHeaderPicActivity;
 import com.fheebiy.trying.activity.overscroll.ScrollTestActivity;
-import com.fheebiy.trying.activity.overscroll.ScrollingActivity;
 import com.fheebiy.trying.activity.photoview.PhotoViewLauncherActivity;
 import com.fheebiy.trying.activity.selfview.SelfDrawViewActivity;
+import com.fheebiy.trying.viewgroup.SelfViewGroupActivity;
 import com.fheebiy.trying.activity.service.RemoteServiceActivity;
 import com.fheebiy.trying.activity.service.ServiceMainActivity;
 import com.fheebiy.trying.activity.tablayout.TabLayoutActivity;
@@ -53,9 +52,10 @@ import com.fheebiy.trying.activity.vp.VpComplexActivity;
 import com.fheebiy.trying.activity.vp.VpStripActivity;
 import com.fheebiy.trying.activity.webview.WebViewActivity;
 import com.fheebiy.trying.adapter.IndexAdapter;
-import com.fheebiy.trying.event.ViewGroupEventActivity;
+import com.fheebiy.trying.viewgroup.ViewGroupEventActivity;
 import com.fheebiy.trying.model.UIModel;
 import com.fheebiy.trying.util.Log;
+import com.fheebiy.trying.viewgroup.guolinscroller.GuoLinScrollerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +92,8 @@ public class IndexActivity extends FragmentActivity {
 
     public List<UIModel> getUIList() {
         List<UIModel> list = new ArrayList<UIModel>();
+        list.add(new UIModel("自定义ViewGroup", SelfViewGroupActivity.class));
+        list.add(new UIModel("guolin ViewGroup and scroller", GuoLinScrollerActivity.class));
         list.add(new UIModel("to main1", MainActivity.class));
         list.add(new UIModel("Scrolling header activity", ScrollFragmentTestActivity.class));
         list.add(new UIModel("Scrolling", ScrollHeaderPicActivity.class));

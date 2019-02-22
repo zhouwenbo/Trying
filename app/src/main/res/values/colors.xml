@@ -14,6 +14,10 @@
     <color name="pstrip_text_selected_color">#3774A3</color>
     <color name="colorTransport">#00000000</color>
 
+
+
+    <color name="textPrimaryColor">#333333</color>
+
     <color name="colorPrimary">#146e6e</color>
 
 </resources>

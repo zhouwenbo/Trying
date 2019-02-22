@@ -14,10 +14,14 @@ import com.fheebiy.trying.view.CounterView;
  * invalidate通知view重绘,view会调用onDraw方法.
  * requestLayout通知重新布局,调用onMeasure onLayout onDraw三个方法
  *
+ * LabelView onMeasure 示例, 显示如何用设定高度
+ *
  */
 public class SelfDrawViewActivity extends Activity {
 
     private CounterView mView;
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.self_draw_view);

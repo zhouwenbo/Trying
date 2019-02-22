@@ -107,7 +107,7 @@
         <activity android:name=".activity.photoview.RotationSampleActivity" />
         <activity android:name=".activity.photoview.SimpleSampleActivity" />
         <activity android:name=".activity.photoview.ViewPagerActivity" />
-        <activity android:name=".event.ViewGroupEventActivity" />
+        <activity android:name=".viewgroup.ViewGroupEventActivity" />
 
         <service android:name=".service.MyService" />
         <service
@@ -161,6 +161,10 @@
         <activity android:name=".activity.cood.VpTestActivity" android:screenOrientation="portrait"/>
 
         <activity android:name=".activity.cood.ScrollFragmentTestActivity" android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".viewgroup.SelfViewGroupActivity" android:screenOrientation="portrait"></activity>
+
+        <activity android:name=".viewgroup.guolinscroller.GuoLinScrollerActivity" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

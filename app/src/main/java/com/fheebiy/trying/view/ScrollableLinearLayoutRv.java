@@ -236,6 +236,13 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
                 requestLayout();
             }
         });
+
+        mShrinkView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
     @Override
@@ -252,7 +259,12 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
      */
     public int getMaxScrollDistance() {
 
-        if (mShrinkView.getHeight() != mMaxScrollDistance - searchBarHeight) {
+       /* if (mShrinkView.getHeight() != mMaxScrollDistance - searchBarHeight) {
+            mMaxScrollDistance = mShrinkView.getHeight() - searchBarHeight;
+            requestLayout();
+        }*/
+
+        if (mMaxScrollDistance != mShrinkView.getHeight() - searchBarHeight) {
             mMaxScrollDistance = mShrinkView.getHeight() - searchBarHeight;
             requestLayout();
         }

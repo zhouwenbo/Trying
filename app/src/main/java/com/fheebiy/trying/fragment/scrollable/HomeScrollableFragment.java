@@ -85,6 +85,8 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
     private View mTextView;
 
+    private TextView mDescTv;
+
     protected ScrollableLinearLayoutRv mBannerContainer;
     public static final int TITLE_HEIGHT = 49;
 
@@ -112,13 +114,15 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
 
     private void findViews(View view) {
-        viewPager = (ViewPager) view.findViewById(R.id.anim_viewpager);
+        viewPager = view.findViewById(R.id.anim_viewpager);
 
-        title1 = (TextView) view.findViewById(R.id.anim_title1);
-        title2 = (TextView) view.findViewById(R.id.anim_title2);
-        title3 = (TextView) view.findViewById(R.id.anim_title3);
+        title1 = view.findViewById(R.id.anim_title1);
+        title2 = view.findViewById(R.id.anim_title2);
+        title3 = view.findViewById(R.id.anim_title3);
 
         mTextView = view.findViewById(R.id.scroll_test_tv);
+
+        mDescTv = view.findViewById(R.id.tv_desc);
 
         mRefreshLayout = view.findViewById(R.id.refreshLayout);
         //mRefreshLayout.setRefreshHeader(new MyRefreshHeader(getContext()));
@@ -137,7 +141,7 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
                         }
                         mRefreshLayout.finishRefresh();
                     }
-                },2000);
+                }, 2000);
 
             }
         });
@@ -234,6 +238,14 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
                 animation.setFillAfter(true);
                 animation.setDuration(300);
                 strip.startAnimation(animation);
+
+                if (i == 2) {
+                    if (mDescTv.getVisibility() == View.VISIBLE) {
+                        mDescTv.setVisibility(View.GONE);
+                    } else {
+                        mDescTv.setVisibility(View.VISIBLE);
+                    }
+                }
             }
 
             @Override
@@ -406,7 +418,7 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
     public void onScrollChanged(int scrollY) {
         if (scrollY == 0) {
             mRefreshLayout.setEnableRefresh(true);
-        } else if(scrollY > 0){
+        } else if (scrollY > 0) {
             mRefreshLayout.setEnableRefresh(false);
         }
     }

@@ -36,6 +36,15 @@
 
                 </com.fheebiy.trying.view.AutoScrollViewPager>
 
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_46"
+                    android:textColor="@color/black"
+                    android:text="描述文本"
+                    android:gravity="center"
+                    android:background="@color/colorPrimary" />
+
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/h_recyclerview"

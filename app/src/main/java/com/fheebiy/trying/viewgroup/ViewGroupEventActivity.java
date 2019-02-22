@@ -1,4 +1,4 @@
-package com.fheebiy.trying.event;
+package com.fheebiy.trying.viewgroup;
 
 import android.app.Activity;
 import android.os.Bundle;
