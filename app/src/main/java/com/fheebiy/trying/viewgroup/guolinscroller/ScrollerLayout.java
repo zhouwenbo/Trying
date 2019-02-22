@@ -85,6 +85,7 @@ public class ScrollerLayout extends ViewGroup {
             for (int i = 0; i < childCount; i++) {
                 View childView = getChildAt(i);
                 // 为ScrollerLayout中的每一个子控件在水平方向上进行布局
+                // bottom 的值，不是零，因为这个Bottom 是相对于parent的左上角。零点位置的。所以一定是view的高度
                 childView.layout(i * childView.getMeasuredWidth(), 0, (i + 1) * childView.getMeasuredWidth(), childView.getMeasuredHeight());
             }
             // 初始化左右边界值
