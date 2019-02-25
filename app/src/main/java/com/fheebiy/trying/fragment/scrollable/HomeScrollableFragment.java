@@ -3,6 +3,7 @@ package com.fheebiy.trying.fragment.scrollable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,12 +27,14 @@ import com.fheebiy.trying.activity.cood.HRvAdapter;
 import com.fheebiy.trying.activity.main.MainActivity;
 import com.fheebiy.trying.adapter.ComplexVpAdapter;
 import com.fheebiy.trying.adapter.ImagePagerAdapter;
+import com.fheebiy.trying.adapter.ViewPagerAdapter;
 import com.fheebiy.trying.fragment.BaseFragment;
 import com.fheebiy.trying.fragment.TabEightFragment;
 import com.fheebiy.trying.fragment.TabNineFragment;
 import com.fheebiy.trying.fragment.TabSevenFragment;
 import com.fheebiy.trying.fragment.TabTwoFragment;
 import com.fheebiy.trying.util.CommonUtil;
+import com.fheebiy.trying.util.ViewUtils;
 import com.fheebiy.trying.view.AutoScrollViewPager;
 import com.fheebiy.trying.view.MyRefreshHeader;
 import com.fheebiy.trying.view.ScrollableLinearLayoutRv;
@@ -59,25 +62,12 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
     private List<Fragment> list;
 
-    private ComplexVpAdapter adapter;
+    private ViewPagerAdapter adapter;
 
-    private TabSevenFragment sevenFragment;
-    private Fragment eightFragment;
-    private Fragment nineFragment;
 
-    private TextView title1;
+    List<String> titles = new ArrayList<String>();
 
-    private TextView title2;
 
-    private TextView title3;
-
-    private List<TextView> titles = new ArrayList<TextView>();
-
-    private ImageView strip;
-
-    private int offset;
-
-    private int currIndex;
 
     private RecyclerView mHRecyclerView;
 
@@ -92,6 +82,8 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
 
     private SmartRefreshLayout mRefreshLayout;
+
+    private TabLayout mTabLayout;
 
 
     @Override
@@ -116,10 +108,7 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
     private void findViews(View view) {
         viewPager = view.findViewById(R.id.anim_viewpager);
 
-        title1 = view.findViewById(R.id.anim_title1);
-        title2 = view.findViewById(R.id.anim_title2);
-        title3 = view.findViewById(R.id.anim_title3);
-
+        mTabLayout = view.findViewById(R.id.tabLayout);
         mTextView = view.findViewById(R.id.scroll_test_tv);
 
         mDescTv = view.findViewById(R.id.tv_desc);
@@ -145,9 +134,7 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
             }
         });
-        //mRefreshLayout.setEnableRefresh(true);
 
-        strip = (ImageView) view.findViewById(R.id.animation_strip);
 
         view.findViewById(R.id.ll_header).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,14 +145,9 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
         view.findViewById(R.id.scroll_test_tv).setOnClickListener(this);
 
-        titles.add(title1);
-        titles.add(title2);
-        titles.add(title3);
-
         mHRecyclerView = view.findViewById(R.id.h_recyclerview);
         mHRecyclerView2 = view.findViewById(R.id.h_recyclerview2);
-        //mTotalLayout = (FaceLinearLayout) view.findViewById(R.id.main_container);
-        mBannerContainer = (ScrollableLinearLayoutRv) view.findViewById(R.id.main_content_banner_container);
+        mBannerContainer = view.findViewById(R.id.main_content_banner_container);
         mBannerContainer.setOnScrollListener(this);
 
         updateHRecyclerView();
@@ -193,12 +175,6 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         autoScrollViewPager.setCurrentItem(Integer.MAX_VALUE / 2 - Integer.MAX_VALUE / 2 % imageIdList.size());
 
         //viewPager = (ViewPager) view.findViewById(R.id.anim_viewpager);
-        title1.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        }, 10);
        /* mTotalLayout.addView(view, 0);
         int screenHeight = CommonUtil.getScreenHeight(getActivity());
         Log.d(TAG, screenHeight);
@@ -209,64 +185,13 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
     private void bindListener() {
 
-        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i2) {
-                //  Log.d(TAG, "i=" + i + ",v=" + v + ",i2=" + i2);
-            /*
-                int next_x = 0;
-                int x = (int)(offset*v);
-                Log.d(TAG,"x="+x+",current_x="+current_x);
-                if (i == currIndex) {
-                    next_x = current_x + x;
-                } else {
-                    next_x = -current_x + x;
-                }
-                Log.d(TAG,"current_x="+current_x+",next_x="+next_x);
-                Animation animation = new TranslateAnimation(current_x, next_x, 0, 0);
-                current_x = next_x;
-                animation.setFillAfter(true);
-                animation.setDuration(100);
-                strip.startAnimation(animation);*/
-            }
 
-            @Override
-            public void onPageSelected(int i) {
-                // Log.d(TAG, "current  index=" + i);
-                Animation animation = new TranslateAnimation(currIndex * offset, i * offset, 0, 0);
-                currIndex = i;
-                animation.setFillAfter(true);
-                animation.setDuration(300);
-                strip.startAnimation(animation);
-
-                if (i == 2) {
-                    if (mDescTv.getVisibility() == View.VISIBLE) {
-                        mDescTv.setVisibility(View.GONE);
-                    } else {
-                        mDescTv.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
-
-
-        title1.setOnClickListener(this);
-        title2.setOnClickListener(this);
-        title3.setOnClickListener(this);
-
-        // scrollableLinearLayout.setOnScrollListener(this);
     }
 
     private void initStripImageView() {
         DisplayMetrics dm = new DisplayMetrics();
         getActivity().getWindowManager().getDefaultDisplay().getMetrics(dm);      //这句，去掉动画就失效了,很神奇，这是为什么了
         int screenWidth = dm.widthPixels;
-        offset = screenWidth / 3;
     }
 
     private void initUI() {
@@ -278,9 +203,36 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         list.add(new TabTwoFragment());
         list.add(new TabTwoFragment());
 
-        adapter = new ComplexVpAdapter(getActivity().getSupportFragmentManager(), list, getActivity());
+
+        titles.add("one");
+        titles.add("two");
+        titles.add("three");
+
+        adapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager(), list, titles, getActivity());
 
         viewPager.setAdapter(adapter);
+
+        for (int i = 0; i < list.size(); i++) {
+            TabLayout.Tab tab = mTabLayout.newTab();
+
+            View view = LayoutInflater.from(getContext()).inflate(R.layout.item_view_home_tablayout, null);
+            tab.setCustomView(view);
+
+            TextView text = view.findViewById(R.id.home_tab_up_tv);
+            text.setText("选项卡" + i);
+
+            TextView textView = view.findViewById(R.id.home_tab_down_tv);
+            textView.setText("进行时" + i);
+
+            mTabLayout.addTab(tab);
+
+
+        }
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+
+
     }
 
 
@@ -369,7 +321,7 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         int max = mBannerContainer.getMaxScrollDistance();
         boolean b = y < max;
 
-        Log.d(TAG, "y = " + y + " ,max = " + max + " ,b = " + b + " ,from = " + from);
+        //Log.d(TAG, "y = " + y + " ,max = " + max + " ,b = " + b + " ,from = " + from);
 
         return b;
     }
@@ -378,19 +330,15 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
     public boolean canScrollDown() {
         int scrollY = mBannerContainer.getScrollY();
         boolean canScrollDown = scrollY > 0 && scrollY < mBannerContainer.getMaxScrollDistance();
+        RecyclerView recyclerView = getRecyclerView();
+        boolean top = recyclerView.getChildAt(0).getTop() == recyclerView.getPaddingTop();
+        Log.d(TAG, "top = " + top);
 
-        int index = viewPager.getCurrentItem();
-        if (index >= 0) {
-            Fragment fragment = adapter.getItem(index);
-            if (fragment instanceof BaseRvFragment) {
-                BaseRvFragment commonFragment = (BaseRvFragment) fragment;
-                RecyclerView recyclerView = commonFragment.getRecyclerView();
-                if (recyclerView != null && recyclerView.getChildAt(0) != null
-                        && recyclerView.getChildAt(0).getTop() == recyclerView.getPaddingTop()) {
-                    canScrollDown = true;
-                }
-            }
+        if (recyclerView != null && recyclerView.getChildAt(0) != null
+                && recyclerView.getChildAt(0).getTop() == recyclerView.getPaddingTop()) {
+            canScrollDown = true;
         }
+
         Log.d(TAG, "canScrollDown = " + canScrollDown);
         return canScrollDown;
     }
@@ -420,6 +368,44 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
             mRefreshLayout.setEnableRefresh(true);
         } else if (scrollY > 0) {
             mRefreshLayout.setEnableRefresh(false);
+        }
+
+        Log.d(TAG, "scrollY = " + scrollY);
+
+        if (scrollY < mBannerContainer.getMaxScrollDistance()) {
+            int count = adapter.getCount();
+            int currentIndex = viewPager.getCurrentItem();
+            if (count > 0) {
+                for (int i = 0; i < count; i++) {
+                    Fragment fragment = adapter.getItem(i);
+                    if (i != currentIndex && fragment instanceof BaseRvFragment) {
+                        BaseRvFragment commonFragment = (BaseRvFragment) fragment;
+                        RecyclerView recyclerView = commonFragment.getRecyclerView();
+                        if (recyclerView != null) {
+                            recyclerView.scrollToPosition(0);
+                        }
+                    }
+                }
+            }
+        }
+
+        if (scrollY == mBannerContainer.getMaxScrollDistance()) {
+
+            mTabLayout.getLayoutParams().height = CommonUtil.dip2px(getContext(), 46);
+            //mTabLayout.requestLayout();
+
+            for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+                View view = mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.home_tab_down_tv);
+                ViewUtils.setGone(view);
+            }
+        } else if (scrollY < mBannerContainer.getMaxScrollDistance()) {
+            for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+                View view = mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.home_tab_down_tv);
+                ViewUtils.setVisible(view);
+            }
+
+            mTabLayout.getLayoutParams().height = CommonUtil.dip2px(getContext(), 65);
+            //mTabLayout.requestLayout();
         }
     }
 }
