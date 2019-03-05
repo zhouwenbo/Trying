@@ -1,5 +1,6 @@
 package com.fheebiy.trying.view;
 
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
@@ -560,6 +561,22 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
             break;
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+    public void smoothBackToUp() {
+        final int startY = getScrollY();
+        ValueAnimator animator = ValueAnimator.ofInt(0, 1).setDuration(300);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float fraction =  animation.getAnimatedFraction();
+                int y = (int) (startY * (1 - fraction));
+                scrollTo(0, y);
+                mOnScrollListener.onScrollChanged(y);
+            }
+        });
+
+        animator.start();
     }
 
     /**

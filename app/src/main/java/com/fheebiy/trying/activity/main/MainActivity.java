@@ -37,6 +37,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private TextView btn3;
     private TextView btn4;
 
+    private int currentIndex = 0;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,6 +100,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             case R.id.main_btn1:
                 btn1.setTextColor(getResources().getColor(R.color.orange));
                 showFragment(twoFragment,threeFragment,fourFragment, fiveFragment);
+                twoFragment.smoothBackToUp();
                 break;
             case R.id.main_btn2:
                 btn2.setTextColor(getResources().getColor(R.color.orange));

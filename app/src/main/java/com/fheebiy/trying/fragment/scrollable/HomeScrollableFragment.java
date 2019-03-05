@@ -357,6 +357,10 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         return null;
     }
 
+    public void smoothBackToUp() {
+        mBannerContainer.smoothBackToUp();
+    }
+
     @Override
     public ViewPager getViewPager() {
         return viewPager;

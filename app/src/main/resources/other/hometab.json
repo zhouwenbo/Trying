@@ -1,0 +1,1164 @@
+{
+  "code": 0,
+  "data": {
+    "guessLikeTabVOList": [{
+      "tabIcon": {
+        "height": 0,
+        "title": "string",
+        "url": "string",
+        "width": 0
+      },
+      "tabId": 0,
+      "tabName": {
+        "iconUrl": "string",
+        "styleId": "string",
+        "text": "猜你喜欢"
+      },
+      "tabSubName": {
+        "iconUrl": "string",
+        "styleId": "string",
+        "text": "最懂你"
+      }
+    }, {
+      "tabIcon": {
+        "height": 0,
+        "title": "string",
+        "url": "string",
+        "width": 0
+      },
+      "tabId": 1,
+      "tabName": {
+        "iconUrl": "string",
+        "styleId": "string",
+        "text": "年货节"
+      },
+      "tabSubName": {
+        "iconUrl": "string",
+        "styleId": "string",
+        "text": "新春特惠"
+      }
+    }, {
+      "tabIcon": {
+        "height": 0,
+        "title": "string",
+        "url": "string",
+        "width": 0
+      },
+      "tabId": 2,
+      "tabName": {
+        "iconUrl": "string",
+        "styleId": "string",
+        "text": "下午茶"
+      },
+      "tabSubName": {
+        "iconUrl": "string",
+        "styleId": "string",
+        "text": "休闲片刻"
+      }
+    }, {
+      "tabIcon": {
+        "height": 0,
+        "title": "string",
+        "url": "string",
+        "width": 0
+      },
+      "tabId": 3,
+      "tabName": {
+        "iconUrl": "string",
+        "styleId": "string",
+        "text": "应季水果"
+      },
+      "tabSubName": {
+        "iconUrl": "string",
+        "styleId": "string",
+        "text": "时令新鲜"
+      }
+    }, {
+      "tabIcon": {
+        "height": 0,
+        "title": "string",
+        "url": "string",
+        "width": 0
+      },
+      "tabId": 4,
+      "tabName": {
+        "iconUrl": "string",
+        "styleId": "string",
+        "text": "火锅季"
+      },
+      "tabSubName": {
+        "iconUrl": "string",
+        "styleId": "string",
+        "text": "冬日诱惑"
+      }
+    }],
+    "itemList": [{
+      "cookbookLiteVO": {
+        "cookbookId": 25,
+        "name": {
+          "text": "海鲜麻辣烫"
+        },
+        "hardLevel": {
+          "text": "高级"
+        },
+        "spend": {
+          "text": "10-30分钟"
+        },
+        "picUrls": {
+          "url": "http://p0.meituan.net/mallimages/04944e891eaf5f2a3248bca8cdce4ab1263161.png",
+          "width": 750,
+          "height": 600
+        },
+        "description": {
+          "text": "土豆、大葱、菜谱主料、猪肉猪肉猪肉、葱葱葱、鱼肉、k辅料1、大葱、土豆"
+        },
+        "ingredientCount": {
+          "text": "6种主料"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 1
+    }, {
+      "cookbookLiteVO": {
+        "cookbookId": 25,
+        "name": {
+          "text": "海鲜麻辣烫"
+        },
+        "hardLevel": {
+          "text": "高级"
+        },
+        "spend": {
+          "text": "10-30分钟"
+        },
+        "picUrls": {
+          "url": "http://p0.meituan.net/mallimages/04944e891eaf5f2a3248bca8cdce4ab1263161.png",
+          "width": 750,
+          "height": 600
+        },
+        "description": {
+          "text": "土豆、大葱、菜谱主料、猪肉猪肉猪肉、葱葱葱、鱼肉、k辅料1、大葱、土豆"
+        },
+        "ingredientCount": {
+          "text": "6种主料"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛 搭配甜脆的洋葱，再用黑椒酱炒制 浓香四溢",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 2
+    }, {
+      "cookbookLiteVO": {
+        "cookbookId": 0,
+        "hardLevel": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "description": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "name": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "picUrls": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "spend": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 1
+    }, {
+      "cookbookLiteVO": {
+        "cookbookId": 23,
+        "name": {
+          "text": "黄焖鸡"
+        },
+        "hardLevel": {
+          "text": "初级"
+        },
+        "spend": {
+          "text": "10-30分钟"
+        },
+        "picUrls": {
+          "url": "http://p1.meituan.net/mallimages/a7f1249c8a306dc38fa72e12d049292b280784.png",
+          "width": 750,
+          "height": 600
+        },
+        "description": {
+          "text": "菜谱主料、猪肉猪肉猪肉、葱葱葱、鱼肉、大葱、土豆"
+        },
+        "ingredientCount": {
+          "text": "4种主料"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛 搭配甜脆的洋葱，再用黑椒酱炒制 浓香四溢",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 2
+    }, {
+      "cookbookLiteVO": {
+        "cookbookId": 23,
+        "name": {
+          "text": "黄焖鸡"
+        },
+        "hardLevel": {
+          "text": "初级"
+        },
+        "spend": {
+          "text": "10-30分钟"
+        },
+        "picUrls": {
+          "url": "http://p1.meituan.net/mallimages/a7f1249c8a306dc38fa72e12d049292b280784.png",
+          "width": 750,
+          "height": 600
+        },
+        "description": {
+          "text": "菜谱主料、猪肉猪肉猪肉、葱葱葱、鱼肉、大葱、土豆"
+        },
+        "ingredientCount": {
+          "text": "4种主料"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛 搭配甜脆的洋葱，再用黑椒酱炒制 浓香四溢",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 1
+    }, {
+      "cookbookLiteVO": {
+        "cookbookId": 23,
+        "name": {
+          "text": "黄焖鸡"
+        },
+        "hardLevel": {
+          "text": "初级"
+        },
+        "spend": {
+          "text": "10-30分钟"
+        },
+        "picUrls": {
+          "url": "http://p1.meituan.net/mallimages/a7f1249c8a306dc38fa72e12d049292b280784.png",
+          "width": 750,
+          "height": 600
+        },
+        "description": {
+          "text": "菜谱主料、猪肉猪肉猪肉、葱葱葱、鱼肉、大葱、土豆"
+        },
+        "ingredientCount": {
+          "text": "4种主料"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 2
+    }, {
+      "cookbookLiteVO": {
+        "cookbookId": 0,
+        "hardLevel": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "description": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "name": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "picUrls": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "spend": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛 搭配甜脆的洋葱，再用黑椒酱炒制 浓香四溢",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 1
+    }, {
+      "cookbookLiteVO": {
+        "cookbookId": 0,
+        "hardLevel": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "description": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "name": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "picUrls": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "spend": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛 搭配甜脆的洋葱，再用黑椒酱炒制 浓香四溢",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 1
+    }, {
+      "cookbookLiteVO": {
+        "cookbookId": 23,
+        "name": {
+          "text": "黄焖鸡"
+        },
+        "hardLevel": {
+          "text": "初级"
+        },
+        "spend": {
+          "text": "10-30分钟"
+        },
+        "picUrls": {
+          "url": "http://p1.meituan.net/mallimages/a7f1249c8a306dc38fa72e12d049292b280784.png",
+          "width": 750,
+          "height": 600
+        },
+        "description": {
+          "text": "菜谱主料、猪肉猪肉猪肉、葱葱葱、鱼肉、大葱、土豆"
+        },
+        "ingredientCount": {
+          "text": "4种主料"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛 搭配甜脆的洋葱，再用黑椒酱炒制 浓香四溢",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 2
+    }, {
+      "cookbookLiteVO": {
+        "cookbookId": 23,
+        "name": {
+          "text": "黄焖鸡"
+        },
+        "hardLevel": {
+          "text": "初级"
+        },
+        "spend": {
+          "text": "10-30分钟"
+        },
+        "picUrls": {
+          "url": "http://p1.meituan.net/mallimages/a7f1249c8a306dc38fa72e12d049292b280784.png",
+          "width": 750,
+          "height": 600
+        },
+        "description": {
+          "text": "菜谱主料、猪肉猪肉猪肉、葱葱葱、鱼肉、大葱、土豆"
+        },
+        "ingredientCount": {
+          "text": "4种主料"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛 搭配甜脆的洋葱，再用黑椒酱炒制 浓香四溢",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 1
+    }, {
+      "cookbookLiteVO": {
+        "cookbookId": 0,
+        "hardLevel": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "description": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "name": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "picUrls": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "spend": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        }
+      },
+      "skuItem": {
+        "subscription": false,
+        "subStatus": false,
+        "skuId": 14330,
+        "picUrl": "http://p0.meituan.net/mallimages/7ba6ef7032965c5a70f59ca64cd4d130131141.jpg",
+        "skuTitle": {
+          "text": "测试14330"
+        },
+        "skuSubTitle": {
+          "text": "精选上好的肥牛",
+          "styleId": "lsd"
+        },
+        "sellUnit": {
+          "text": "盒"
+        },
+        "sellPrice": {
+          "text": "¥2.34"
+        },
+        "tags": [{
+          "text": "预售",
+          "styleId": "common_top",
+          "type": 1
+        }],
+        "sellButton": {
+          "text": "",
+          "enable": true,
+          "status": 1
+        },
+        "loose": false,
+        "buyStep": "1",
+        "buyUnit": "盒",
+        "skuBarCode": "75006",
+        "process": false
+      },
+      "subjectVO": {
+        "image": {
+          "height": 0,
+          "title": "string",
+          "url": "string",
+          "width": 0
+        },
+        "topicName": {
+          "iconUrl": "string",
+          "styleId": "string",
+          "text": "string"
+        },
+        "iretail": "string",
+        "subjectId": 0
+      },
+      "type": 1
+    }],
+    "limit": 0,
+    "moduleTitle": {
+      "iconUrl": "string",
+      "styleId": "string",
+      "text": "string"
+    },
+    "offset": 0,
+    "total": 0,
+    "styleMap": {
+      "common_tpm": {
+        "color": "#432703",
+        "borderColor": "#FFE5A6",
+        "backgroundColor": "#FFEEC5"
+      },
+      "pt": {
+        "color": "#FFFFFF",
+        "borderColor": "#005DACE9",
+        "backgroundColor": "#FF5DACE9"
+      },
+      "ty": {
+        "color": "#FF9900",
+        "backgroundColor": "#F0FFF2E3"
+      },
+      "lt": {
+        "color": "#CB7C00",
+        "borderColor": "#CB7C00",
+        "backgroundColor": "#99FFFFFF"
+      },
+      "lsspv310": {
+        "color": "#BB6B2E"
+      },
+      "odpbnbu": {
+        "color": "#999999",
+        "borderColor": "#B7B7B7"
+      },
+      "common_tpd": {
+        "color": "#E95A7E",
+        "borderColor": "#FFE1E8",
+        "backgroundColor": "#FFF2F5"
+      },
+      "dp": {
+        "textDecoration": "line-through"
+      },
+      "lrtv3": {
+        "color": "#506CD0",
+        "backgroundColor": "#F0EEF1FF"
+      },
+      "sws": {
+        "color": "#FFFFFF",
+        "backgroundColor": "#FF0068FF"
+      },
+      "sso": {
+        "color": "#FFFFFF",
+        "backgroundColor": "#D9D9D9"
+      },
+      "biz_tpd": {
+        "color": "#FF6632",
+        "borderColor": "#FFC79E",
+        "backgroundColor": "#FFF3EB"
+      },
+      "dt": {
+        "color": "#0080E2",
+        "borderColor": "#0080E2",
+        "backgroundColor": "#FFFFFFFF"
+      },
+      "sol": {
+        "color": "#FFFFFF",
+        "backgroundColor": "#D9D9D9"
+      },
+      "odpbnbe": {
+        "color": "#333333",
+        "backgroundColor": "#EEEEEE"
+      },
+      "biz_top": {
+        "color": "#4D8AF3",
+        "borderColor": "#A7C4F6",
+        "backgroundColor": "#F2F7FF"
+      },
+      "scl": {
+        "color": "#999999"
+      },
+      "common_top": {
+        "color": "#E95A7E",
+        "borderColor": "#FFE1E8",
+        "backgroundColor": "#FFF2F5"
+      },
+      "mpoiv3": {
+        "color": "#DB3535",
+        "backgroundColor": "#F0FFEEEE"
+      },
+      "scgsg": {
+        "color": "#53B348"
+      },
+      "scgsf": {
+        "color": "#E0924D"
+      },
+      "clt": {
+        "color": "#333333"
+      },
+      "d2tv33": {
+        "color": "#333333"
+      },
+      "scrg": {
+        "backgroundColor": "#F9F9F9"
+      },
+      "scrf": {
+        "backgroundColor": "#F9F9F9"
+      },
+      "biz_sp": {
+        "color": "#999999"
+      },
+      "prt": {
+        "color": "#FFFFFF",
+        "borderColor": "#00FD714D",
+        "backgroundColor": "#FFFD714D"
+      },
+      "d2tv32": {
+        "color": "#8F5E3C"
+      },
+      "ltv3": {
+        "color": "#D19B5A",
+        "borderColor": "#E3C39C",
+        "backgroundColor": "#ccFFFFFF"
+      },
+      "lsb": {
+        "color": "#FE4F20"
+      },
+      "lsd": {
+        "color": "#999999"
+      },
+      "fb": {
+        "color": "#0080E2"
+      },
+      "swsv3": {
+        "color": "#FFFFFF",
+        "backgroundColor": "#66A78157"
+      },
+      "addot": {
+        "color": "#A78157",
+        "backgroundColor": "#F7F1EC"
+      },
+      "addco": {
+        "color": "#506cd0",
+        "backgroundColor": "#eef1ff"
+      },
+      "top": {
+        "color": "#506CD0",
+        "borderColor": "#96A7E3",
+        "backgroundColor": "#ccFFFFFF"
+      },
+      "group_style_gb": {
+        "backgroundColor": "#FFE8E3"
+      },
+      "group_style_text": {
+        "color": "#FF5454"
+      },
+      "lsdv3": {
+        "color": "#666666"
+      },
+      "lsbv3": {
+        "color": "#C79F7D"
+      },
+      "scbsg": {
+        "color": "#867F78"
+      },
+      "sdpci": {
+        "color": "#666666"
+      },
+      "scbsf": {
+        "color": "#867F78"
+      },
+      "d2t": {
+        "color": "#0080E2"
+      },
+      "tpd": {
+        "color": "#FFFFFF",
+        "backgroundColor": "#C79F7D"
+      },
+      "addho": {
+        "color": "#ed8c00",
+        "backgroundColor": "#fff1e2"
+      },
+      "tb": {
+        "color": "#0080E2",
+        "backgroundColor": "#F0E2F0FE"
+      },
+      "tpm": {
+        "color": "#FFFFFF",
+        "backgroundColor": "#FF688B"
+      },
+      "ltdv3": {
+        "color": "#C79F7D",
+        "borderColor": "#C79F7D",
+        "backgroundColor": "#00FFFFFF"
+      },
+      "tlpdv3": {
+        "color": "#506CD0"
+      },
+      "tpdv3": {
+        "color": "#506CD0",
+        "backgroundColor": "#F0EEF1FF"
+      },
+      "biz_tpm": {
+        "color": "#ffffff",
+        "backgroundColor": "#FF7a32"
+      },
+      "fpstp": {
+        "color": "#333333",
+        "backgroundColor": "#F6F6F6"
+      },
+      "d2tv3": {
+        "color": "#506CD0"
+      },
+      "mt34": {
+        "color": "#C8853F",
+        "backgroundColor": "#F0FFEECA"
+      },
+      "ssr38": {
+        "color": "#333333",
+        "borderColor": "#B7B7B7"
+      },
+      "msg_tip_biz": {
+        "color": "#53B348",
+        "backgroundColor": "#E1F5D9"
+      }
+    },
+    "error": {
+      "msg": "string"
+    }
+  }
+}

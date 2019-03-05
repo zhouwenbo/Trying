@@ -20,4 +20,11 @@
 
     <color name="colorPrimary">#146e6e</color>
 
+
+    <color name="textColorTest">#432703</color>
+    <color name="borderColorTest">#FFE5A6</color>
+    <color name="backgroundColorTest">#FFEEC5</color>
+
+
+
 </resources>
