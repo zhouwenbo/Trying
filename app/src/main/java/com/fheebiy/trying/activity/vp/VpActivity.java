@@ -1,6 +1,5 @@
 package com.fheebiy.trying.activity.vp;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -9,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.adapter.ViewPagerAdapter;
 import com.fheebiy.trying.fragment.*;
+import com.fheebiy.trying.fragment.scrollable.TabTwoFragment;
 
 import java.util.ArrayList;
 import java.util.List;

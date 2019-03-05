@@ -32,7 +32,6 @@ import com.fheebiy.trying.fragment.BaseFragment;
 import com.fheebiy.trying.fragment.TabEightFragment;
 import com.fheebiy.trying.fragment.TabNineFragment;
 import com.fheebiy.trying.fragment.TabSevenFragment;
-import com.fheebiy.trying.fragment.TabTwoFragment;
 import com.fheebiy.trying.util.CommonUtil;
 import com.fheebiy.trying.util.ViewUtils;
 import com.fheebiy.trying.view.AutoScrollViewPager;
@@ -331,14 +330,12 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         int scrollY = mBannerContainer.getScrollY();
         boolean canScrollDown = scrollY > 0 && scrollY < mBannerContainer.getMaxScrollDistance();
         RecyclerView recyclerView = getRecyclerView();
-        boolean top = recyclerView.getChildAt(0).getTop() == recyclerView.getPaddingTop();
-        Log.d(TAG, "top = " + top);
-
-        if (recyclerView != null && recyclerView.getChildAt(0) != null
-                && recyclerView.getChildAt(0).getTop() == recyclerView.getPaddingTop()) {
-            canScrollDown = true;
+        if (recyclerView != null && recyclerView.getChildAt(0) != null) {
+            boolean can = recyclerView.canScrollVertically(-1);
+            if (!can) {
+                canScrollDown = true;
+            }
         }
-
         Log.d(TAG, "canScrollDown = " + canScrollDown);
         return canScrollDown;
     }
@@ -378,14 +375,13 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
         if (scrollY < mBannerContainer.getMaxScrollDistance()) {
             int count = adapter.getCount();
-            int currentIndex = viewPager.getCurrentItem();
             if (count > 0) {
                 for (int i = 0; i < count; i++) {
                     Fragment fragment = adapter.getItem(i);
-                    if (i != currentIndex && fragment instanceof BaseRvFragment) {
+                    if (fragment instanceof BaseRvFragment) {
                         BaseRvFragment commonFragment = (BaseRvFragment) fragment;
                         RecyclerView recyclerView = commonFragment.getRecyclerView();
-                        if (recyclerView != null) {
+                        if (recyclerView != null && recyclerView.getChildAt(0) != null && recyclerView.canScrollVertically(-1)) {
                             recyclerView.scrollToPosition(0);
                         }
                     }

@@ -72,9 +72,6 @@ dependencies {
      */
     annotationProcessor project(path: ':compiler')
 
-    /* implementation ('me.drakeet.multitype:multitype:3.5.0'){
-        exclude group: 'com.android.support'
-    }*/
 
 
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
@@ -99,6 +96,11 @@ dependencies {
 
     implementation "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
 
+
+
+    implementation('me.drakeet.multitype:multitype:3.4.4') {
+        exclude group: 'com.android.support'
+    }
 
 
 }

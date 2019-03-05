@@ -11,7 +11,6 @@ import com.fheebiy.trying.adapter.ComplexVpAdapter;
 import com.fheebiy.trying.fragment.DownloadFragment;
 import com.fheebiy.trying.fragment.TabFourFragment;
 import com.fheebiy.trying.fragment.TabThreeFragment;
-import com.fheebiy.trying.fragment.TabTwoFragment;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,20 +2,16 @@ package com.fheebiy.trying.activity.main;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
-import android.widget.TabWidget;
 import android.widget.TextView;
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.fragment.*;
 import com.fheebiy.trying.fragment.scrollable.HomeScrollableFragment;
+import com.fheebiy.trying.fragment.scrollable.TabTwoFragment;
 import com.fheebiy.trying.view.FragmentTabHost;
-import com.fheebiy.trying.view.MyFragmentTabHost;
-import com.fheebiy.trying.view.MyTabIndicator;
-import com.fheebiy.trying.view.TabIndicator;
 
 /**
  * Created by zhouwenbo on 15/5/24.
@@ -32,7 +28,7 @@ public class Main4Activity extends FragmentActivity {
 
     private String mTextviewArray[] = {"搜悦", "消息", "发现", "我的"};
 
-    private Class fragmentArray[] ={TabSix2Fragment.class, HomeScrollableFragment.class, TabThreeFragment.class,TabTwoFragment.class};
+    private Class fragmentArray[] ={TabSix2Fragment.class, HomeScrollableFragment.class, TabThreeFragment.class, TabTwoFragment.class};
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

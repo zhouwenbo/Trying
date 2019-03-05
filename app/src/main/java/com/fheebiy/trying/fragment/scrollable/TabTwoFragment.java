@@ -1,27 +1,17 @@
-package com.fheebiy.trying.fragment;
+package com.fheebiy.trying.fragment.scrollable;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.fheebiy.trying.R;
-import com.fheebiy.trying.activity.cood.MyAdapter;
-import com.fheebiy.trying.fragment.scrollable.BaseRvFragment;
 import com.fheebiy.trying.util.CommonUtil;
-
-import java.util.List;
 
 /**
  * Created by bob zhou on 14-7-30.
@@ -39,12 +29,15 @@ public class TabTwoFragment extends BaseRvFragment {
 
         mRecyclerView = view.findViewById(R.id.recyclerview);
 
-        mRecyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
-        RecyclerView.Adapter adapter = new MyAdapter(getActivity());
+        StaggeredGridLayoutManager manager=  new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+
+        mRecyclerView.setLayoutManager(manager);
+        ScrollRvAdapter adapter = new ScrollRvAdapter();
+
 
         mRecyclerView.setAdapter(adapter);
 
-        adapter.notifyDataSetChanged();
+        adapter.init();
         return view;
 
     }
@@ -59,4 +52,6 @@ public class TabTwoFragment extends BaseRvFragment {
     public RecyclerView getRecyclerView() {
         return mRecyclerView;
     }
+
+
 }

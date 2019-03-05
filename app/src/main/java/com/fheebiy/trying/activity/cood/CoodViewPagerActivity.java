@@ -12,10 +12,7 @@ import android.widget.LinearLayout;
 
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.adapter.ViewPagerAdapter;
-import com.fheebiy.trying.fragment.TabFiveFragment;
-import com.fheebiy.trying.fragment.TabFourFragment;
-import com.fheebiy.trying.fragment.TabThreeFragment;
-import com.fheebiy.trying.fragment.TabTwoFragment;
+import com.fheebiy.trying.fragment.scrollable.TabTwoFragment;
 import com.fheebiy.trying.view.MyRefreshHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 

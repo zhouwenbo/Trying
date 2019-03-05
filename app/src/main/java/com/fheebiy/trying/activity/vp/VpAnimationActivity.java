@@ -1,7 +1,5 @@
 package com.fheebiy.trying.activity.vp;
 
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -17,7 +15,7 @@ import com.fheebiy.trying.R;
 import com.fheebiy.trying.adapter.ComplexVpAdapter;
 import com.fheebiy.trying.fragment.TabFourFragment;
 import com.fheebiy.trying.fragment.TabThreeFragment;
-import com.fheebiy.trying.fragment.TabTwoFragment;
+import com.fheebiy.trying.fragment.scrollable.TabTwoFragment;
 
 import java.util.ArrayList;
 import java.util.List;

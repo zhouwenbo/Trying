@@ -12,7 +12,7 @@ import com.fheebiy.trying.adapter.ViewPagerAdapter;
 import com.fheebiy.trying.fragment.TabFiveFragment;
 import com.fheebiy.trying.fragment.TabFourFragment;
 import com.fheebiy.trying.fragment.TabThreeFragment;
-import com.fheebiy.trying.fragment.TabTwoFragment;
+import com.fheebiy.trying.fragment.scrollable.TabTwoFragment;
 
 import java.util.ArrayList;
 import java.util.List;

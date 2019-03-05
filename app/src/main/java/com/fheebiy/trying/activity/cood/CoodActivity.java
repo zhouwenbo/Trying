@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.fheebiy.trying.R;
+import com.fheebiy.trying.fragment.scrollable.MyAdapter;
 import com.fheebiy.trying.view.MyRefreshHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 

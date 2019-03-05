@@ -1,4 +1,4 @@
-package com.fheebiy.trying.activity.cood;
+package com.fheebiy.trying.fragment.scrollable;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

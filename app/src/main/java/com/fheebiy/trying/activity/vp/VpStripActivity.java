@@ -9,11 +9,10 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import com.fheebiy.trying.R;
-import com.fheebiy.trying.adapter.ComplexVpAdapter;
 import com.fheebiy.trying.adapter.LoopViewPager;
 import com.fheebiy.trying.fragment.TabFourFragment;
 import com.fheebiy.trying.fragment.TabThreeFragment;
-import com.fheebiy.trying.fragment.TabTwoFragment;
+import com.fheebiy.trying.fragment.scrollable.TabTwoFragment;
 import com.fheebiy.trying.view.PagerSlidingTabStrip;
 
 import java.util.ArrayList;

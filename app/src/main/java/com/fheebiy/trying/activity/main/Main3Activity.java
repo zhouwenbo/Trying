@@ -1,14 +1,11 @@
 package com.fheebiy.trying.activity.main;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
-import android.widget.FrameLayout;
+
 import com.fheebiy.trying.R;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTabHost;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,7 +14,7 @@ import android.widget.TextView;
 import com.fheebiy.trying.fragment.TabFiveFragment;
 import com.fheebiy.trying.fragment.TabFourFragment;
 import com.fheebiy.trying.fragment.TabThreeFragment;
-import com.fheebiy.trying.fragment.TabTwoFragment;
+import com.fheebiy.trying.fragment.scrollable.TabTwoFragment;
 
 
 /**
