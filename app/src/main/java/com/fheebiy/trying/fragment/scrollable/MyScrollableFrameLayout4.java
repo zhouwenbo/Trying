@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
@@ -27,21 +28,35 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
     private int mStartTopMargin;
 
     private int mEndTopMargin;
-    private float mYDown;
-    private float mXDown;
-    private int mDownTopMaigin;
 
-    private float mInterceptXDown;
-    private float mInterceptYDown;
 
     private ScrollListner mScrollListner;
 
+
+
+    /**
+     * 滑动速度监听
+     */
+    private VelocityTracker mVelocityTracker;
+
     public static final String TAG = "My_ScrollableFra_";
+
+
+    private static final int INVALID_POINTER = -1;
 
     /**
      * 滑动的临界值
      */
     private int mTouchSlop;
+    private float mLastMotionY;
+    private float mLastMotionX;
+    private float mDownMotionX;
+    private float mDownMotionY;
+    private int mActivePointerId;
+    private int mUpFinalY;
+    private int mMinimumVelocity;
+    private int mMaximumVelocity;
+    private int mDownTopMargin;
 
     public MyScrollableFrameLayout4(Context context) {
         super(context);
@@ -61,6 +76,8 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
     private void init() {
         final ViewConfiguration configuration = ViewConfiguration.get(getContext());
         mTouchSlop = configuration.getScaledTouchSlop();
+        mMinimumVelocity = configuration.getScaledMinimumFlingVelocity();
+        mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
     }
 
     public void setScrollListner(ScrollListner listner) {
@@ -76,68 +93,136 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
         mStartTopMargin = CommonUtil.dip2px(getContext(), 80);  //240
         mEndTopMargin = CommonUtil.dip2px(getContext(), 46);    //138
         Log.d(TAG, "start = " + mStartTopMargin + " ,end = " + mEndTopMargin);
-
     }
-
 
     @Override
-    public boolean dispatchTouchEvent(MotionEvent event) {
+    public boolean dispatchTouchEvent(MotionEvent ev) {
 
-        switch (event.getAction()) {
+        if (mVelocityTracker == null) {
+            mVelocityTracker = VelocityTracker.obtain();
+        }
+        mVelocityTracker.addMovement(ev);
+        final int action = ev.getAction();
+        switch (action & MotionEvent.ACTION_MASK) {
+
             case MotionEvent.ACTION_DOWN:
-                mYDown = event.getY();
-                mXDown = event.getX();
-                mDownTopMaigin = mMarginLayoutParams.topMargin;
+                float y = ev.getRawY();
+                float x = ev.getRawX();
+                mLastMotionY = y;
+                mLastMotionX = x;
+                mDownMotionX = x;
+                mDownMotionY = y;
+                mActivePointerId = ev.getPointerId(0);
+                mUpFinalY = 0;
+                mDownTopMargin = mMarginLayoutParams.topMargin;
+
                 break;
-
             case MotionEvent.ACTION_MOVE:
-
-                float currentY = event.getY();
-                float currentX = event.getX();
-                int yMove = (int) (currentY - mYDown);
-                int xMove = (int) (currentX - mXDown);
-
-                final int yDiff = Math.abs(yMove);
-                final int xDiff = Math.abs(xMove);
-                boolean isVerticalScroll = yDiff > xDiff && yDiff > mTouchSlop;
-                boolean isCeling = mScrollListner.isCeiling();
-                //Log.d(TAG, "yDiff = " + yDiff + " ,xDiff = " + xDiff);
-                if (isCeling) {
-                    Log.e(TAG, "isVerticalScroll = " + isVerticalScroll + " ,yMove = " + yMove + " ,isCeling = " + isCeling);
-                } else {
-                    Log.d(TAG, "isVerticalScroll = " + isVerticalScroll + " ,yMove = " + yMove + " ,isCeling = " + isCeling);
+                final int activePointerId = mActivePointerId;
+                if (activePointerId == INVALID_POINTER) {
+                    break;
                 }
 
-                if (isVerticalScroll && isCeling) {
-                    if (mMarginLayoutParams.topMargin <= mStartTopMargin && mMarginLayoutParams.topMargin >= mEndTopMargin) {
-                        int currentMargin = mDownTopMaigin + yMove;
-                        if (currentMargin >= mStartTopMargin) {
-                            currentMargin = mStartTopMargin;
+                final int pointerIndex = ev.findPointerIndex(activePointerId);
+                y = ev.getRawY();
+                x = ev.getRawX();
+                final int yDiff = (int) Math.abs(y - mDownMotionY);
+                final int xDiff = (int) Math.abs(x - mDownMotionX);
+                int deltaY = (int) (y - mLastMotionY);
+                boolean mIsVerticalScroll = false;
+                if (!mIsVerticalScroll && yDiff > mTouchSlop && xDiff < yDiff) {
+                    mIsVerticalScroll = true;
+                    //ViewPager vp = mOnScrollListener.getViewPager();
+                   /* if (vp != null) {
+                        vp.requestDisallowInterceptTouchEvent(true);
+                    }*/
+                }
+                boolean  mIsUp = deltaY < 0;
+                boolean isCeiling =  mScrollListner.isCeiling();
+                if (isCeiling) {
+                    Log.e(TAG, "mIsVerticalScroll = " + mIsVerticalScroll + " ,isCeiling = " + isCeiling + " ,xDiff = " + xDiff + " ,yDiff = " + yDiff);
+                } else {
+                    Log.d(TAG, "mIsVerticalScroll = " + mIsVerticalScroll + " ,isCeiling = " + isCeiling);
+                }
+                if (mIsVerticalScroll && isCeiling) {
+                    if (mIsUp) {
+                        if (mMarginLayoutParams.topMargin <= mStartTopMargin && mMarginLayoutParams.topMargin > mEndTopMargin) {
+                            int currentMargin = mDownTopMargin + deltaY;
+                            boolean intercept = true;
+                            if (currentMargin <= mEndTopMargin) {
+                                currentMargin = mEndTopMargin;
+
+                                intercept = false;
+                            }
+
+                            mMarginLayoutParams.topMargin = currentMargin;
+                            mLinearLayout.setLayoutParams(mMarginLayoutParams);
+
+                            return intercept;
                         }
 
-                        if (currentMargin <= mEndTopMargin) {
-                            currentMargin = mEndTopMargin;
+                    } else {
+                        if (mMarginLayoutParams.topMargin < mStartTopMargin && mMarginLayoutParams.topMargin >= mEndTopMargin) {
+
+                            int currentMargin = mDownTopMargin + deltaY;
+                            boolean intercept = true;
+                            if (currentMargin >= mStartTopMargin) {
+                                currentMargin = mStartTopMargin;
+
+                                intercept = false;
+                            }
+
+                            mMarginLayoutParams.topMargin = currentMargin;
+                            mLinearLayout.setLayoutParams(mMarginLayoutParams);
+                            return intercept;
+
                         }
+                    }
 
-                        mMarginLayoutParams.topMargin = currentMargin;
-                        mLinearLayout.setLayoutParams(mMarginLayoutParams);
+                }
 
-                        return true;
+                break;
+
+            case MotionEvent.ACTION_CANCEL:
+            case MotionEvent.ACTION_UP:
+                // 计算y轴速度
+                int yVelocity = 0;
+                if (mVelocityTracker != null) {
+                    final VelocityTracker velocityTracker = mVelocityTracker;
+                    velocityTracker.computeCurrentVelocity(1000, mMaximumVelocity);// SUPPRESS CHECKSTYLE
+                    yVelocity = (int) velocityTracker.getYVelocity(mActivePointerId);
+                }
+                mActivePointerId = INVALID_POINTER;
+
+                if (mVelocityTracker != null) {
+                    mVelocityTracker.recycle();
+                    mVelocityTracker = null;
+                }
+
+
+                break;
+            case MotionEvent.ACTION_POINTER_UP:
+                int index = (ev.getAction() & MotionEvent.ACTION_POINTER_INDEX_MASK)
+                        >> MotionEvent.ACTION_POINTER_INDEX_SHIFT;
+                int pointerId = ev.getPointerId(index);
+                if (pointerId == mActivePointerId) {
+                    final int newPointerIndex = index == 0 ? 1 : 0;
+                    mLastMotionY = ev.getY(newPointerIndex);
+                    mLastMotionX = ev.getX(newPointerIndex);
+                    mActivePointerId = ev.getPointerId(newPointerIndex);
+                    if (mVelocityTracker != null) {
+                        mVelocityTracker.clear();
                     }
                 }
-
                 break;
-
-            case MotionEvent.ACTION_UP:
-                break;
-
             default:
-
+                break;
         }
-
-
-        return super.dispatchTouchEvent(event);
+        boolean has = super.dispatchTouchEvent(ev);
+        android.util.Log.d(TAG, "has = " + has);
+        return has;
     }
+
 
     public interface ScrollListner {
 
