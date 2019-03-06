@@ -1,5 +1,6 @@
 package com.fheebiy.trying.fragment.scrollable;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
@@ -25,9 +26,9 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
 
     private MarginLayoutParams mMarginLayoutParams;
 
-    private int mStartTopMargin;
+    private int mExpendTopMargin;
 
-    private int mEndTopMargin;
+    private int mHideTopMargin;
 
 
     private ScrollListner mScrollListener;
@@ -60,6 +61,8 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
     private int mDownTopMargin;
 
     private float mLastMoveY;
+    private boolean isVertical;
+
 
     public MyScrollableFrameLayout4(Context context) {
         super(context);
@@ -93,9 +96,9 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
         super.onFinishInflate();
         mLinearLayout = findViewById(R.id.anim_viewpager);
         mMarginLayoutParams = (MarginLayoutParams) mLinearLayout.getLayoutParams();
-        mStartTopMargin = CommonUtil.dip2px(getContext(), 80);  //240
-        mEndTopMargin = CommonUtil.dip2px(getContext(), 46);    //138
-        Log.d(TAG, "start = " + mStartTopMargin + " ,end = " + mEndTopMargin);
+        mExpendTopMargin = CommonUtil.dip2px(getContext(), 80);  //240
+        mHideTopMargin = CommonUtil.dip2px(getContext(), 46);    //138
+        Log.d(TAG, "start = " + mExpendTopMargin + " ,end = " + mHideTopMargin);
     }
 
     @Override
@@ -119,6 +122,7 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
                 mUpFinalY = 0;
                 mDownTopMargin = mMarginLayoutParams.topMargin;
                 hasSet = false;
+                isVertical = false;
 
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -152,16 +156,19 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
                 } else {
                     //Log.d(TAG, "mIsVerticalScroll = " + mIsVerticalScroll + " ,isCeiling = " + isCeiling);
                 }
+
+                isVertical = mIsVerticalScroll;
+
                 if (mIsVerticalScroll && isCeiling) {
                     Log.e(TAG, "topMargin = " + mMarginLayoutParams.topMargin + " ,mIsUp = " + mIsUp);
                     if (mIsUp) {
-                        if (mMarginLayoutParams.topMargin <= mStartTopMargin) {
+                        if (mMarginLayoutParams.topMargin <= mExpendTopMargin) {
 
                             deltaY = (int) (y - mLastMotionY);
                             int currentMargin = mDownTopMargin + deltaY;
                             boolean intercept = true;
-                            if (currentMargin <= mEndTopMargin) {
-                                currentMargin = mEndTopMargin;
+                            if (currentMargin <= mHideTopMargin) {
+                                currentMargin = mHideTopMargin;
 
                                 intercept = false;
                             }
@@ -179,12 +186,12 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
                         }
 
                     } else {
-                        if (mMarginLayoutParams.topMargin >= mEndTopMargin) {
+                        if (mMarginLayoutParams.topMargin >= mHideTopMargin) {
                             deltaY = (int) (y - mLastMotionY);
                             int currentMargin = mDownTopMargin + deltaY;
                             boolean intercept = true;
-                            if (currentMargin >= mStartTopMargin) {
-                                currentMargin = mStartTopMargin;
+                            if (currentMargin >= mExpendTopMargin) {
+                                currentMargin = mExpendTopMargin;
 
                                 intercept = false;
                             }
@@ -223,6 +230,12 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
                     mVelocityTracker = null;
                 }
 
+                if (isVertical) {
+                    if (Math.abs(yVelocity) > mMinimumVelocity) {
+                        smoothChangeMarginTopByVelocity(yVelocity);
+                    }
+                }
+
 
                 break;
             case MotionEvent.ACTION_POINTER_UP:
@@ -249,7 +262,7 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
 
 
     public boolean isTopMarginTop() {
-        return mMarginLayoutParams.topMargin == mStartTopMargin;
+        return mMarginLayoutParams.topMargin == mExpendTopMargin;
     }
 
 
@@ -269,5 +282,44 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
          */
         boolean isCanScroll();
 
+    }
+
+    private void smoothChangeMarginTopByVelocity(int velocity) {
+
+        Log.d(TAG, "velocity = "+ velocity);
+
+        if (velocity > 0) { //向下滑
+            final int currentTopMargin = mMarginLayoutParams.topMargin;
+            int desTopMargin = mExpendTopMargin;
+            final int deltaMargin = desTopMargin - currentTopMargin;
+
+            ValueAnimator animator = ValueAnimator.ofInt(0, 1).setDuration(300);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float fraction = animation.getAnimatedFraction();
+                    mMarginLayoutParams.topMargin = (int) (currentTopMargin + (fraction * deltaMargin));
+                    mLinearLayout.setLayoutParams(mMarginLayoutParams);
+                }
+            });
+
+            animator.start();
+        } else { //向上滑
+            final int currentTopMargin = mMarginLayoutParams.topMargin;
+            int desTopMargin = mHideTopMargin;
+            final int deltaMargin = desTopMargin - currentTopMargin;
+
+            ValueAnimator animator = ValueAnimator.ofInt(0, 1).setDuration(300);
+            animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float fraction = animation.getAnimatedFraction();
+                    mMarginLayoutParams.topMargin = (int) (currentTopMargin + (fraction * deltaMargin));
+                    mLinearLayout.setLayoutParams(mMarginLayoutParams);
+                }
+            });
+
+            animator.start();
+        }
     }
 }
