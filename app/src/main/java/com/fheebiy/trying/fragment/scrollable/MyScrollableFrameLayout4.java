@@ -30,8 +30,9 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
     private int mEndTopMargin;
 
 
-    private ScrollListner mScrollListner;
+    private ScrollListner mScrollListener;
 
+    private boolean hasSet;
 
 
     /**
@@ -58,6 +59,8 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
     private int mMaximumVelocity;
     private int mDownTopMargin;
 
+    private float mLastMoveY;
+
     public MyScrollableFrameLayout4(Context context) {
         super(context);
         init();
@@ -80,8 +83,8 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
         mMaximumVelocity = configuration.getScaledMaximumFlingVelocity();
     }
 
-    public void setScrollListner(ScrollListner listner) {
-        this.mScrollListner = listner;
+    public void setScrollListener(ScrollListner listner) {
+        this.mScrollListener = listner;
     }
 
 
@@ -115,6 +118,7 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
                 mActivePointerId = ev.getPointerId(0);
                 mUpFinalY = 0;
                 mDownTopMargin = mMarginLayoutParams.topMargin;
+                hasSet = false;
 
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -137,16 +141,23 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
                         vp.requestDisallowInterceptTouchEvent(true);
                     }*/
                 }
-                boolean  mIsUp = deltaY < 0;
-                boolean isCeiling =  mScrollListner.isCeiling();
+                boolean mIsUp = deltaY < 0;
+                boolean isCeiling = mScrollListener.isCeiling();
+                if (isCeiling && !hasSet) {
+                    mLastMotionY = y;
+                    hasSet = true;
+                }
                 if (isCeiling) {
                     Log.e(TAG, "mIsVerticalScroll = " + mIsVerticalScroll + " ,isCeiling = " + isCeiling + " ,xDiff = " + xDiff + " ,yDiff = " + yDiff);
                 } else {
-                    Log.d(TAG, "mIsVerticalScroll = " + mIsVerticalScroll + " ,isCeiling = " + isCeiling);
+                    //Log.d(TAG, "mIsVerticalScroll = " + mIsVerticalScroll + " ,isCeiling = " + isCeiling);
                 }
                 if (mIsVerticalScroll && isCeiling) {
+                    Log.e(TAG, "topMargin = " + mMarginLayoutParams.topMargin + " ,mIsUp = " + mIsUp);
                     if (mIsUp) {
-                        if (mMarginLayoutParams.topMargin <= mStartTopMargin && mMarginLayoutParams.topMargin > mEndTopMargin) {
+                        if (mMarginLayoutParams.topMargin <= mStartTopMargin) {
+
+                            deltaY = (int) (y - mLastMotionY);
                             int currentMargin = mDownTopMargin + deltaY;
                             boolean intercept = true;
                             if (currentMargin <= mEndTopMargin) {
@@ -155,15 +166,21 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
                                 intercept = false;
                             }
 
-                            mMarginLayoutParams.topMargin = currentMargin;
-                            mLinearLayout.setLayoutParams(mMarginLayoutParams);
-
-                            return intercept;
+                            if (mMarginLayoutParams.topMargin != currentMargin) {
+                                mMarginLayoutParams.topMargin = currentMargin;
+                                mLinearLayout.setLayoutParams(mMarginLayoutParams);
+                            }
+                            Log.e(TAG, "deltaY = " + deltaY + " intercept = " + intercept);
+                            if (intercept) {
+                                return true;
+                            } else {
+                                return super.dispatchTouchEvent(ev);
+                            }
                         }
 
                     } else {
-                        if (mMarginLayoutParams.topMargin < mStartTopMargin && mMarginLayoutParams.topMargin >= mEndTopMargin) {
-
+                        if (mMarginLayoutParams.topMargin >= mEndTopMargin) {
+                            deltaY = (int) (y - mLastMotionY);
                             int currentMargin = mDownTopMargin + deltaY;
                             boolean intercept = true;
                             if (currentMargin >= mStartTopMargin) {
@@ -172,13 +189,20 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
                                 intercept = false;
                             }
 
-                            mMarginLayoutParams.topMargin = currentMargin;
-                            mLinearLayout.setLayoutParams(mMarginLayoutParams);
-                            return intercept;
+                            if (mMarginLayoutParams.topMargin != currentMargin) {
+                                mMarginLayoutParams.topMargin = currentMargin;
+                                mLinearLayout.setLayoutParams(mMarginLayoutParams);
+                            }
+                            Log.e(TAG, "deltaY = " + deltaY + " intercept = " + intercept);
+                            if (intercept) {
+                                return true;
+                            } else {
+                                return super.dispatchTouchEvent(ev);
+                            }
 
                         }
                     }
-
+                    mLastMotionY = y;
                 }
 
                 break;
@@ -221,6 +245,11 @@ public class MyScrollableFrameLayout4 extends FrameLayout {
         boolean has = super.dispatchTouchEvent(ev);
         android.util.Log.d(TAG, "has = " + has);
         return has;
+    }
+
+
+    public boolean isTopMarginTop() {
+        return mMarginLayoutParams.topMargin == mStartTopMargin;
     }
 
 
