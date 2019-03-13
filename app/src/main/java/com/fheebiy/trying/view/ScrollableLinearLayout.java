@@ -16,8 +16,6 @@ import android.widget.Scroller;
 /**
  * 首页内容外层的linearlayout，主要处理banner和listview的联动
  * 
- * @author zhaoxuyang
- * @since 2014年10月29日
  */
 public class ScrollableLinearLayout extends LinearLayout {
 
@@ -505,8 +503,6 @@ public class ScrollableLinearLayout extends LinearLayout {
     /**
      * 滑动监听
      * 
-     * @author zhaoxuyang
-     * @since 2014年10月29日
      */
     public interface OnScrollYChangeListener {
 
