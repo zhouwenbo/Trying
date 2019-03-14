@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Build;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.VelocityTracker;
 import android.view.ViewConfiguration;
@@ -145,6 +146,8 @@ public class ScrollableLinearLayout extends LinearLayout {
      */
     private int mMaximumVelocity;
 
+    public static final String TAG = "SCROLL_LL";
+
     /**
      * 构造方法
      * 
@@ -196,6 +199,7 @@ public class ScrollableLinearLayout extends LinearLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int height = MeasureSpec.getSize(heightMeasureSpec);
+        Log.d(TAG, "height = " + height);
         heightMeasureSpec = MeasureSpec.makeMeasureSpec(height + mMaxScrollDistance, MeasureSpec.EXACTLY);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
@@ -266,6 +270,7 @@ public class ScrollableLinearLayout extends LinearLayout {
                 if (lv != null) {
                     lv.smoothScrollBy(mUpFinalY, mUpDuration);
                 }
+                Log.d(TAG, "computeScrollOffset 111");
             } else {
                 int currentY = mUpFlingScroller.getCurrY() + mUpFlingScrollY;
                 if (currentY > mMaxScrollDistance) {
@@ -273,6 +278,7 @@ public class ScrollableLinearLayout extends LinearLayout {
                 }
                 scrollTo(0, currentY);
                 mOnScrollListener.onScrollChanged(currentY);
+                Log.d(TAG, "computeScrollOffset 222");
             }
             mNeedInvalidate = true;
         }
@@ -357,11 +363,13 @@ public class ScrollableLinearLayout extends LinearLayout {
             final int yDiff = (int) Math.abs(y - mDownMotionY);
             final int xDiff = (int) Math.abs(x - mDownMotionX);
             int deltaY = (int) (y - mLastMotionY);
-          
+            Log.d(TAG, "mIsVerticalScroll = " + mIsVerticalScroll);
             if (!mIsVerticalScroll && yDiff > mTouchSlop && xDiff < yDiff) {
                 mIsVerticalScroll = true;
+                Log.d(TAG, "requestDisallowInterceptTouchEvent");
                 ViewPager vp = mOnScrollListener.getViewPager();
                 if (vp != null) {
+                    //让ViewPager不要拦截事件，防止ViewPager左右晃动
                     vp.requestDisallowInterceptTouchEvent(true);
                 }
             }
@@ -371,6 +379,8 @@ public class ScrollableLinearLayout extends LinearLayout {
                     if ((mIsUp && mOnScrollListener.canScrollUp()) || (!mIsUp && mOnScrollListener.canScrollDown())) {
                         mIsBeingExpand = true;
                         if (!mIsUp && mOnScrollListener.canScrollDown()) {
+                            Log.d(TAG, "mLastMotionY = y");
+                            //防止吸顶的时候，下滑突变
                             mLastMotionY = y;
                         }
                     }
@@ -414,12 +424,17 @@ public class ScrollableLinearLayout extends LinearLayout {
                 mVelocityTracker = null;
             }
 
+            //向上滑yVelocity < 0 向下滑向上滑yVelocity > 0
+            Log.d(TAG, "yVelocity = " + yVelocity);
+
             if (mIsVerticalScroll) {
                 if (Math.abs(yVelocity) > mMinimumVelocity) {
                     int velocity = -yVelocity;
                     int dis = mMaxScrollDistance - getScrollY();
+                    //向上滑
                     if (velocity > 0 && dis > 0) {
                         // 根据速度使listview平移
+                        Log.d(TAG, "velocity > 0 && dis > 0");
                         mDownFlingScroller.forceFinished(true);
                         mHeadScroller.forceFinished(true);
                         mUpFlingScroller.fling(0, 0, 0, velocity, 0, Integer.MAX_VALUE, 0, Integer.MAX_VALUE);
@@ -427,6 +442,7 @@ public class ScrollableLinearLayout extends LinearLayout {
                         mUpFinalY = mUpFlingScroller.getFinalY();
                         mUpFlingStartTime = System.currentTimeMillis();
                         mUpFlingScrollY = getScrollY();
+                        Log.d(TAG, "mUpDuration = "+ mUpDuration + " ,mUpFinalY = " + mUpFinalY + " ,mUpFlingStartTime = " + mUpFlingStartTime + " ,mUpFlingScrollY = " + mUpFlingScrollY);
                         invalidate();
                         mIsVerticalScroll = false;
                         mIsBeingExpand = false;

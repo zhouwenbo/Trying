@@ -560,7 +560,9 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
         default:
             break;
         }
-        return super.dispatchTouchEvent(ev);
+        boolean has = super.dispatchTouchEvent(ev);
+        Log.d(TAG, "has = " + has);
+        return has;
     }
 
     public void smoothBackToUp() {

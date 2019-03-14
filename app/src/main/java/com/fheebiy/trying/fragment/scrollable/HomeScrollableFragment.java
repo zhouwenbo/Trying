@@ -3,7 +3,6 @@ package com.fheebiy.trying.fragment.scrollable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,30 +12,19 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.activity.cood.HRvAdapter;
 import com.fheebiy.trying.activity.main.MainActivity;
-import com.fheebiy.trying.adapter.ComplexVpAdapter;
 import com.fheebiy.trying.adapter.ImagePagerAdapter;
 import com.fheebiy.trying.adapter.ViewPagerAdapter;
-import com.fheebiy.trying.fragment.BaseFragment;
-import com.fheebiy.trying.fragment.TabEightFragment;
-import com.fheebiy.trying.fragment.TabNineFragment;
-import com.fheebiy.trying.fragment.TabSevenFragment;
 import com.fheebiy.trying.util.CommonUtil;
-import com.fheebiy.trying.util.ViewUtils;
 import com.fheebiy.trying.view.AutoScrollViewPager;
-import com.fheebiy.trying.view.MyRefreshHeader;
 import com.fheebiy.trying.view.ScrollableLinearLayoutRv;
+import com.fheebiy.trying.view.xtablayout.XTabLayout;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -47,7 +35,7 @@ import java.util.List;
 /**
  * Created by zhouwenbo on 15/5/25.
  */
-public class HomeScrollableFragment extends Fragment implements View.OnClickListener, ScrollableLinearLayoutRv.OnScrollYChangeListener {
+public class HomeScrollableFragment extends Fragment implements View.OnClickListener, ScrollableLinearLayoutRv.OnScrollYChangeListener, MyScrollableFrameLayout4.ScrollListner {
 
 
     public static final String TAG = "HomeScrollableFragment";
@@ -67,7 +55,6 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
     List<String> titles = new ArrayList<String>();
 
 
-
     private RecyclerView mHRecyclerView;
 
     private RecyclerView mHRecyclerView2;
@@ -82,7 +69,10 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
     private SmartRefreshLayout mRefreshLayout;
 
-    private TabLayout mTabLayout;
+    private XTabLayout mTabLayout;
+
+    private MyScrollableFrameLayout4 mMyScrollableFrameLayout4;
+    private ViewGroup.MarginLayoutParams mMarginLayoutParams;
 
 
     @Override
@@ -106,6 +96,8 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
     private void findViews(View view) {
         viewPager = view.findViewById(R.id.anim_viewpager);
+
+        mMarginLayoutParams = (ViewGroup.MarginLayoutParams) viewPager.getLayoutParams();
 
         mTabLayout = view.findViewById(R.id.tabLayout);
         mTextView = view.findViewById(R.id.scroll_test_tv);
@@ -148,6 +140,11 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         mHRecyclerView2 = view.findViewById(R.id.h_recyclerview2);
         mBannerContainer = view.findViewById(R.id.main_content_banner_container);
         mBannerContainer.setOnScrollListener(this);
+
+        mMyScrollableFrameLayout4 = view.findViewById(R.id.scrollable_framelayout);
+
+        mMyScrollableFrameLayout4.setScrollListener(this);
+
 
         updateHRecyclerView();
         updateHRecyclerView2();
@@ -212,7 +209,7 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         viewPager.setAdapter(adapter);
 
         for (int i = 0; i < list.size(); i++) {
-            TabLayout.Tab tab = mTabLayout.newTab();
+            XTabLayout.Tab tab = mTabLayout.newTab();
 
             View view = LayoutInflater.from(getContext()).inflate(R.layout.item_view_home_tablayout, null);
             tab.setCustomView(view);
@@ -228,8 +225,8 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
         }
 
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-        mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(viewPager));
+        viewPager.addOnPageChangeListener(new XTabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        mTabLayout.addOnTabSelectedListener(new XTabLayout.ViewPagerOnTabSelectedListener(viewPager));
 
 
     }
@@ -337,7 +334,7 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
             }
         }
         Log.d(TAG, "canScrollDown = " + canScrollDown);
-        return canScrollDown;
+        return canScrollDown && mMyScrollableFrameLayout4.isTopMarginTop();
     }
 
     @Override
@@ -391,21 +388,49 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
 
         if (scrollY == mBannerContainer.getMaxScrollDistance()) {
 
-            mTabLayout.getLayoutParams().height = CommonUtil.dip2px(getContext(), 46);
+           /* mTabLayout.getLayoutParams().height = CommonUtil.dip2px(getContext(), 46);
             //mTabLayout.requestLayout();
 
             for (int i = 0; i < mTabLayout.getTabCount(); i++) {
                 View view = mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.home_tab_down_tv);
                 ViewUtils.setGone(view);
-            }
+            }*/
         } else if (scrollY < mBannerContainer.getMaxScrollDistance()) {
-            for (int i = 0; i < mTabLayout.getTabCount(); i++) {
+            /*for (int i = 0; i < mTabLayout.getTabCount(); i++) {
                 View view = mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.home_tab_down_tv);
                 ViewUtils.setVisible(view);
             }
 
-            mTabLayout.getLayoutParams().height = CommonUtil.dip2px(getContext(), 65);
+            mTabLayout.getLayoutParams().height = CommonUtil.dip2px(getContext(), 65);*/
             //mTabLayout.requestLayout();
         }
+    }
+
+    @Override
+    public boolean isCeiling() {
+        boolean is =  mBannerContainer.getScrollY() == mBannerContainer.getMaxScrollDistance();
+
+        RecyclerView recyclerView = getRecyclerView();
+        boolean can = true;
+        if (recyclerView != null && recyclerView.getChildAt(0) != null) {
+            //can = true表示能继续向下滑动，can = false表示不能继续向下滑动，也就是滑动到了顶部
+            can = recyclerView.canScrollVertically(-1);
+        }
+
+
+        Log.d(TAG, "isCeiling  is = " + is + " , can = " + can);
+        return is && !can;
+    }
+
+    @Override
+    public boolean isCanScroll() {
+
+        RecyclerView recyclerView = getRecyclerView();
+        if (recyclerView != null && recyclerView.getChildAt(0) != null) {
+            boolean can = recyclerView.canScrollVertically(-1);
+        }
+
+
+        return false;
     }
 }

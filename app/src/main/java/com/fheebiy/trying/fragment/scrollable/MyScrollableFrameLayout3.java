@@ -104,11 +104,11 @@ public class MyScrollableFrameLayout3 extends FrameLayout {
                     //从上往下滑动
                     if (deltaY > 0) {
                         if (currentMargin >= mEndTopMargin && currentMargin < mStartTopMargin) {
-                            intercepted = true;
+                            intercepted = false;
                         }
                     } else {
                         if (currentMargin > mEndTopMargin && currentMargin <= mStartTopMargin) {
-                            intercepted = true;
+                            intercepted = false;
                         }
                     }
 
@@ -176,6 +176,13 @@ public class MyScrollableFrameLayout3 extends FrameLayout {
         return true;
     }
 
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        boolean b =  super.dispatchTouchEvent(ev);
+        Log.d(TAG, "B = "+ b);
+        return b;
+    }
 
     public interface ScrollListner {
 

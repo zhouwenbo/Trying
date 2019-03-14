@@ -83,20 +83,36 @@
 
             </LinearLayout>
 
-            <android.support.design.widget.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:background="@color/white"
-                android:layout_height="65dp"
-                app:tabIndicatorHeight="0dp" />
 
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/anim_viewpager"
+            <com.fheebiy.trying.fragment.scrollable.MyScrollableFrameLayout4
+                android:id="@+id/scrollable_framelayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            </android.support.v4.view.ViewPager>
+
+                <com.fheebiy.trying.view.xtablayout.XTabLayout
+                    android:id="@+id/tabLayout"
+                    android:layout_width="match_parent"
+                    android:background="@color/white"
+                    android:layout_height="80dp"
+                    app:x_tabIndicatorAnimation="false"
+                    app:x_indicatorMarginTop= "0dp"
+                    app:x_tabIndicatorWidth="30dp"
+                    app:x_tabIndicatorHeight="3dp" />
+
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/anim_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="80dp">
+
+                </android.support.v4.view.ViewPager>
+
+
+            </com.fheebiy.trying.fragment.scrollable.MyScrollableFrameLayout4>
+
+
         </com.fheebiy.trying.view.ScrollableLinearLayoutRv>
 
 

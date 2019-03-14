@@ -41,6 +41,7 @@ import com.fheebiy.trying.activity.overscroll.ScrollHeaderPicActivity;
 import com.fheebiy.trying.activity.overscroll.ScrollTestActivity;
 import com.fheebiy.trying.activity.photoview.PhotoViewLauncherActivity;
 import com.fheebiy.trying.activity.selfview.SelfDrawViewActivity;
+import com.fheebiy.trying.viewgroup.SelfViewGroup2Activity;
 import com.fheebiy.trying.viewgroup.SelfViewGroupActivity;
 import com.fheebiy.trying.activity.service.RemoteServiceActivity;
 import com.fheebiy.trying.activity.service.ServiceMainActivity;
@@ -92,9 +93,10 @@ public class IndexActivity extends FragmentActivity {
 
     public List<UIModel> getUIList() {
         List<UIModel> list = new ArrayList<UIModel>();
-        list.add(new UIModel("自定义ViewGroup", SelfViewGroupActivity.class));
-        list.add(new UIModel("guolin ViewGroup and scroller", GuoLinScrollerActivity.class));
         list.add(new UIModel("to main1", MainActivity.class));
+        list.add(new UIModel("to main4", Main4Activity.class));
+        list.add(new UIModel("自定义ViewGroup", SelfViewGroup2Activity.class));
+        list.add(new UIModel("guolin ViewGroup and scroller", GuoLinScrollerActivity.class));
         list.add(new UIModel("Scrolling header activity", ScrollFragmentTestActivity.class));
         list.add(new UIModel("Scrolling", ScrollHeaderPicActivity.class));
         list.add(new UIModel("tablayout", TabLayoutActivity.class));
@@ -138,7 +140,6 @@ public class IndexActivity extends FragmentActivity {
         list.add(new UIModel("to communicate2", Communicate2Activity.class));
         list.add(new UIModel("to communicate1", CommunicateActivity.class));
         list.add(new UIModel("to main5", Main5Activity.class));
-        list.add(new UIModel("to main4", Main4Activity.class));
         list.add(new UIModel("to main3", Main3Activity.class));
         list.add(new UIModel("to main2", Main2Activity.class));
         list.add(new UIModel("to vp strip", VpStripActivity.class));

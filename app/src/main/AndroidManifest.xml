@@ -163,7 +163,7 @@
         <activity android:name=".activity.cood.ScrollFragmentTestActivity" android:screenOrientation="portrait"></activity>
 
         <activity android:name=".viewgroup.SelfViewGroupActivity" android:screenOrientation="portrait"></activity>
-
+        <activity android:name=".viewgroup.SelfViewGroup2Activity" android:screenOrientation="portrait"/>
         <activity android:name=".viewgroup.guolinscroller.GuoLinScrollerActivity" android:screenOrientation="portrait"></activity>
     </application>
 
