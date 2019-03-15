@@ -238,12 +238,7 @@ public class ScrollableLinearLayoutRv extends LinearLayout {
             }
         });
 
-        mShrinkView.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
     }
 
     @Override

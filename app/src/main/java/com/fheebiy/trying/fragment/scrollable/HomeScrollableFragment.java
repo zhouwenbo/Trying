@@ -127,14 +127,9 @@ public class HomeScrollableFragment extends Fragment implements View.OnClickList
         });
 
 
-        view.findViewById(R.id.ll_header).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
 
-        view.findViewById(R.id.scroll_test_tv).setOnClickListener(this);
+        //view.findViewById(R.id.scroll_test_tv).setOnClickListener(this);
 
         mHRecyclerView = view.findViewById(R.id.h_recyclerview);
         mHRecyclerView2 = view.findViewById(R.id.h_recyclerview2);

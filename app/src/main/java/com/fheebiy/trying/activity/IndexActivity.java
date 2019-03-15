@@ -93,6 +93,7 @@ public class IndexActivity extends FragmentActivity {
 
     public List<UIModel> getUIList() {
         List<UIModel> list = new ArrayList<UIModel>();
+        list.add(new UIModel("cood", CoodActivity.class));
         list.add(new UIModel("to main1", MainActivity.class));
         list.add(new UIModel("to main4", Main4Activity.class));
         list.add(new UIModel("自定义ViewGroup", SelfViewGroup2Activity.class));
@@ -102,7 +103,6 @@ public class IndexActivity extends FragmentActivity {
         list.add(new UIModel("tablayout", TabLayoutActivity.class));
         list.add(new UIModel("cood viewpager activity", CoodViewPagerActivity.class));
         list.add(new UIModel("viewpager 横向滑动 activity", VpTestActivity.class));
-        list.add(new UIModel("cood", CoodActivity.class));
         list.add(new UIModel("to ClassloaderActivity", ClassloaderActivity.class));
         list.add(new UIModel("to AyncHttpNPEActivity", AyncHttpNPEActivity.class));
         list.add(new UIModel("to ViewGroup 事件分发", ViewGroupEventActivity.class));

@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.fheebiy.trying.R;
+import com.fheebiy.trying.activity.cood.widget.CategoryFreshHeader;
 import com.fheebiy.trying.fragment.scrollable.MyAdapter;
 import com.fheebiy.trying.view.MyRefreshHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -30,7 +31,7 @@ public class CoodActivity extends AppCompatActivity{
         setContentView(R.layout.activity_cood);
 
         mRefreshLayout = findViewById(R.id.refreshLayout);
-        mRefreshLayout.setRefreshHeader(new MyRefreshHeader(this));
+        mRefreshLayout.setRefreshHeader(new CategoryFreshHeader(this));
 
         mRecyclerView = findViewById(R.id.recyclerview);
 
