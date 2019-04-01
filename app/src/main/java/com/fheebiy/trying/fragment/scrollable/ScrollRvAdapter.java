@@ -25,13 +25,18 @@ public class ScrollRvAdapter extends MultiTypeAdapter {
         register(Hero.class, new HeroViewBinder());
     }
 
-    public void init () {
+    public void init() {
         //mList.add(new Header());
         //mList.add(new Header());
         mList.addAll(CommonUtil.getHeroListData());
         notifyDataSetChanged();
     }
 
+
+    public void addHeader() {
+        mList.add(0, new Header());
+        notifyItemInserted(0);
+    }
 
 
 }

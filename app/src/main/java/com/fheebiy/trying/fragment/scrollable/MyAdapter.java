@@ -44,7 +44,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         ViewGroup.LayoutParams params = viewHolder.itemView.getLayoutParams();
         params.height = heights.get(i);
         viewHolder.itemView.setLayoutParams(params);
-
     }
 
     @Override

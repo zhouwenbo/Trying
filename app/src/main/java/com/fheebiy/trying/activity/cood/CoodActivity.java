@@ -5,10 +5,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.fheebiy.trying.R;
 import com.fheebiy.trying.activity.cood.widget.CategoryFreshHeader;
 import com.fheebiy.trying.fragment.scrollable.MyAdapter;
+import com.fheebiy.trying.fragment.scrollable.ScrollRvAdapter;
 import com.fheebiy.trying.view.MyRefreshHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -18,11 +21,15 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
  * @author bob zhou.
  * Description:
  */
-public class CoodActivity extends AppCompatActivity{
+public class CoodActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
 
     private SmartRefreshLayout mRefreshLayout;
+
+    private TextView mStayTv;
+
+    private ScrollRvAdapter mScrollRvAdapter;
 
 
     @Override
@@ -35,12 +42,21 @@ public class CoodActivity extends AppCompatActivity{
 
         mRecyclerView = findViewById(R.id.recyclerview);
 
+        mStayTv = findViewById(R.id.tv_stay);
+        mStayTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               mScrollRvAdapter.addHeader();
+            }
+        });
+
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        RecyclerView.Adapter adapter = new MyAdapter(this);
+        mScrollRvAdapter = new ScrollRvAdapter();
+        mScrollRvAdapter.init();
 
-        mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(mScrollRvAdapter);
 
-        adapter.notifyDataSetChanged();
+        mScrollRvAdapter.notifyDataSetChanged();
 
     }
 }
