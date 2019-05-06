@@ -13,6 +13,7 @@ import com.fheebiy.trying.activity.cood.widget.CategoryFreshHeader;
 import com.fheebiy.trying.fragment.scrollable.MyAdapter;
 import com.fheebiy.trying.fragment.scrollable.ScrollRvAdapter;
 import com.fheebiy.trying.view.MyRefreshHeader;
+import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 /**
@@ -39,6 +40,7 @@ public class CoodActivity extends AppCompatActivity {
 
         mRefreshLayout = findViewById(R.id.refreshLayout);
         mRefreshLayout.setRefreshHeader(new CategoryFreshHeader(this));
+        LRecyclerView lRecyclerView;
 
         mRecyclerView = findViewById(R.id.recyclerview);
 

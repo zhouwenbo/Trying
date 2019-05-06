@@ -17,17 +17,18 @@
         app:tabTextColor="#000000" />
 
 
-    <android.support.design.widget.TabLayout
+    <com.fheebiy.trying.view.xtablayout.XTabLayout
         android:id="@+id/tabLayout2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_35"
-        app:tabIndicatorHeight="0dp"
+        app:x_tabIndicatorHeight="0dp"
         android:background="#F9F9F9"
-        app:tabPaddingStart="2.5dp"
-        app:tabPaddingEnd="2.5dp"
-        app:tabMode="fixed">
+        app:x_tabPadding="0dp"
+        app:x_tabMinWidth="0dp"
+        app:x_tabPaddingStart="0dp"
+        app:x_tabMode="scrollable">
 
-    </android.support.design.widget.TabLayout>
+    </com.fheebiy.trying.view.xtablayout.XTabLayout>
 
 
     <LinearLayout

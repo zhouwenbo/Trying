@@ -9,11 +9,15 @@ import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.fheebiy.trying.R;
+import com.fheebiy.trying.util.CommonUtil;
 import com.fheebiy.trying.util.Log;
 import com.fheebiy.trying.view.RetailPullDownAnimationView;
+import com.fheebiy.trying.view.xtablayout.XTabLayout;
 
 /**
  * Created on 2018/12/19.
@@ -26,7 +30,7 @@ public class TabLayoutActivity extends AppCompatActivity {
     private static final String TAG = "TabLayoutActivity";
     private TabLayout mTabLayout;
 
-    private TabLayout mTabLayout2;
+    private XTabLayout mTabLayout2;
 
     private RetailPullDownAnimationView mAnimationView;
 
@@ -45,19 +49,19 @@ public class TabLayoutActivity extends AppCompatActivity {
         mAnimationView = findViewById(R.id.loading_anim);
         addTab2();
 
-        mTabLayout2.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        mTabLayout2.addOnTabSelectedListener(new XTabLayout.OnTabSelectedListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
+            public void onTabSelected(XTabLayout.Tab tab) {
                 Log.d(TAG, "TAB text = " + tab.getTag());
             }
 
             @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+            public void onTabUnselected(XTabLayout.Tab tab) {
 
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void onTabReselected(XTabLayout.Tab tab) {
 
             }
         });
@@ -65,12 +69,37 @@ public class TabLayoutActivity extends AppCompatActivity {
     }
 
     private void addTab2() {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 10; i++) {
             TextView textView = getView2();
-            TabLayout.Tab tab = mTabLayout2.newTab().setCustomView(textView);
+            if (i % 2 != 0) {
+                textView.setText("日常生活");
+            }
+            XTabLayout.Tab tab = mTabLayout2.newTab().setCustomView(textView);
             tab.setTag(i);
             mTabLayout2.addTab(tab);
         }
+
+        mTabLayout2.post(new Runnable() {
+            @Override
+            public void run() {
+                ViewGroup viewGroup = (ViewGroup) mTabLayout2.getChildAt(0);
+                for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                    LinearLayout linearLayout = (LinearLayout) viewGroup.getChildAt(i);
+                    linearLayout.getLayoutParams().width = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    linearLayout.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+
+                    int p = CommonUtil.dip2px(getApplicationContext(), 12.5f);
+                    if (i == 0) {
+                        linearLayout.setPadding(CommonUtil.dip2px(getApplicationContext(), 8), 0, p, 0);
+                    } else {
+                        linearLayout.setPadding(p, 0, p, 0);
+                    }
+
+
+                    linearLayout.setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
+                }
+            }
+        });
 
     }
 
@@ -92,8 +121,8 @@ public class TabLayoutActivity extends AppCompatActivity {
     }
 
     public TextView getView2() {
-       TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.view_list_header_selector_tab_text, null);
-       return textView;
+        TextView textView = (TextView) LayoutInflater.from(this).inflate(R.layout.view_list_header_selector_tab_text, null);
+        return textView;
     }
 
 

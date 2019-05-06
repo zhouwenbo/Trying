@@ -100,6 +100,7 @@ public class XTabLayout extends HorizontalScrollView {
      * @see #getTabMode()
      */
     public static final int MODE_FIXED = 1;
+    private static final String TAG = "XTab_Layout_zw";
 
     /**
      * @hide
@@ -244,6 +245,9 @@ public class XTabLayout extends HorizontalScrollView {
 
         mTabPaddingStart = mTabPaddingTop = mTabPaddingEnd = mTabPaddingBottom = a
                 .getDimensionPixelSize(R.styleable.XTabLayout_x_tabPadding, 0);
+
+        Log.d(TAG, "mTabPaddingStart = " + mTabPaddingStart + " ,mTabPaddingTop = " + mTabPaddingTop + " ，mTabPaddingEnd = " + mTabPaddingEnd
+                + " ,mTabPaddingBottom = " + mTabPaddingBottom);
         mTabPaddingStart = a.getDimensionPixelSize(R.styleable.XTabLayout_x_tabPaddingStart,
                 mTabPaddingStart);
         mTabPaddingTop = a.getDimensionPixelSize(R.styleable.XTabLayout_x_tabPaddingTop,
@@ -252,6 +256,10 @@ public class XTabLayout extends HorizontalScrollView {
                 mTabPaddingEnd);
         mTabPaddingBottom = a.getDimensionPixelSize(R.styleable.XTabLayout_x_tabPaddingBottom,
                 mTabPaddingBottom);
+
+        Log.d(TAG, "mTabPaddingStart = " + mTabPaddingStart + " ,mTabPaddingTop = " + mTabPaddingTop + " ，mTabPaddingEnd = " + mTabPaddingEnd
+                + " ,mTabPaddingBottom = " + mTabPaddingBottom);
+
 
         mTabTextAppearance = a.getResourceId(R.styleable.XTabLayout_x_tabTextAppearance,
                 R.style.TextAppearance_Design_Tab);
@@ -1466,7 +1474,7 @@ public class XTabLayout extends HorizontalScrollView {
             }
             ViewCompat.setPaddingRelative(this, mTabPaddingStart, mTabPaddingTop,
                     mTabPaddingEnd, mTabPaddingBottom);
-            setGravity(Gravity.CENTER);
+            setGravity(Gravity.START | Gravity.CENTER_VERTICAL);
             setOrientation(VERTICAL);
             setClickable(true);
             ViewCompat.setPointerIcon(this,
