@@ -25,6 +25,8 @@
     <color name="borderColorTest">#FFE5A6</color>
     <color name="backgroundColorTest">#FFEEC5</color>
 
+    <color name="fest_text_color">#FF6632</color>
+
 
 
 </resources>
