@@ -98,6 +98,8 @@ dependencies {
 
     implementation 'com.github.jdsjlzx:LRecyclerView:1.5.4.3'
 
+    //implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
+
 
 
 

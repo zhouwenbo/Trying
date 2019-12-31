@@ -15,7 +15,7 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0-alpha13'
+        classpath 'com.android.tools.build:gradle:3.5.0'
         /**
          * 这个是怎么来的了？
          * 请看gradle_mvn_push.gradle文件，里面上传的包含有版本号等信息

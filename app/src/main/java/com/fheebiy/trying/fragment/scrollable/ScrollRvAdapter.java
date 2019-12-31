@@ -38,5 +38,10 @@ public class ScrollRvAdapter extends MultiTypeAdapter {
         notifyItemInserted(0);
     }
 
+    public void addItem(Hero hero, int index) {
+        mList.add(index, hero);
+        notifyItemInserted(index);
+    }
+
 
 }

@@ -19,8 +19,9 @@
         android:icon="@mipmap/logo_f"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.text.SpannableStringActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.text.SpannableStringActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activity.overscroll.ScrollHeaderPicActivity"
             android:label="@string/title_activity_scroll_header_pic"
@@ -173,6 +174,9 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".viewgroup.guolinscroller.GuoLinScrollerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.rv.RvAniActivity"
             android:screenOrientation="portrait" />
     </application>
 
